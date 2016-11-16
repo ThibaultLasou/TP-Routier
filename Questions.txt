@@ -1,0 +1,8 @@
+Doit-on pouvoir faire évoluer le nombre de voies sur un segment ?
+Comportement Barrière
+
+Séparation séma dyn et stat ou juste feu panneau
+
+qu'est ce Config physique
+
+
