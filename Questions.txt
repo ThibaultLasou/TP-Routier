@@ -1,8 +1,8 @@
 Doit-on pouvoir faire évoluer le nombre de voies sur un segment ?
 Comportement Barrière
 
-Séparation séma dyn et stat ou juste feu panneau
+Est-il pertinent de créer 2 classes, sémaphores dynamiques et statitques, ou peut-on se contenter juste de feu et panneau ?
 
-qu'est ce Config physique
+Qu'est-ce que la configuration physique précisément ?
 
 
