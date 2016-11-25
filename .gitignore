@@ -1,5 +1,6 @@
 /bin/
 .classpath
 *.swp
+*~
 .metadata/
 .project
