@@ -1,75 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="12.1">
-  <zoom_level>7</zoom_level>
+  <zoom_level>6</zoom_level>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>343</x>
-      <y>462</y>
-      <w>98</w>
-      <h>42</h>
+      <x>276</x>
+      <y>186</y>
+      <w>138</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>Segment
 --
 longueur : int
 --
-isEnd(int l)
-</panel_attributes>
+bool isEnd(int l)
+Voiture getFirstCar(bool sens)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>630</x>
-      <y>462</y>
-      <w>168</w>
-      <h>56</h>
+      <x>576</x>
+      <y>186</y>
+      <w>144</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>&lt;&lt; Abstract &gt;&gt;
 Jonction
 --
+_LONGUEUR : int_
 --
-/getNext(Segment comingFrom)/
 /getNext(Voiture v)/</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>420</x>
-      <y>476</y>
-      <w>223</w>
-      <h>34</h>
+      <x>396</x>
+      <y>174</y>
+      <w>192</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=-
 p2=sesExtrémités
 p1=ses"Voies"  
-m1=2
-m2=1..*</panel_attributes>
-    <additional_attributes>21;21;210;21</additional_attributes>
+m1=1..*
+m2=2</panel_attributes>
+    <additional_attributes>18;18;180;18</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>476</x>
-      <y>469</y>
-      <w>132</w>
-      <h>125</h>
+      <x>396</x>
+      <y>204</y>
+      <w>176</w>
+      <h>96</h>
     </coordinates>
-    <panel_attributes>lt=-&gt;&gt;&gt;
+    <panel_attributes>lt=-
 p1=saSignalisation
-m1=0..1
+m1=0..2
 p2=sonEmplacement
 m2=1
 </panel_attributes>
-    <additional_attributes>119;112;119;98;56;98;49;21</additional_attributes>
+    <additional_attributes>144;84;144;18;18;18</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>560</x>
-      <y>581</y>
-      <w>91</w>
-      <h>56</h>
+      <x>516</x>
+      <y>288</y>
+      <w>78</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>&lt;&lt; Abstract &gt;&gt;
 Sémaphore
@@ -82,38 +82,39 @@ sens : bool
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>91</x>
-      <y>476</y>
-      <w>70</w>
-      <h>21</h>
+      <x>36</x>
+      <y>198</y>
+      <w>90</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>Capteur
 --
---</panel_attributes>
+--
+void getMesure()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>140</x>
-      <y>462</y>
-      <w>216</w>
-      <h>34</h>
+      <x>108</x>
+      <y>186</y>
+      <w>180</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=-
 p2=saRoute
 p1=sesCapteurs
 m1=*
 m2=1</panel_attributes>
-    <additional_attributes>21;21;203;21</additional_attributes>
+    <additional_attributes>18;18;168;18</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>0</x>
-      <y>546</y>
-      <w>70</w>
-      <h>35</h>
+      <x>54</x>
+      <y>348</y>
+      <w>60</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>CaptVitesse
 --
@@ -124,46 +125,35 @@ vitesse : int
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>7</x>
-      <y>476</y>
-      <w>111</w>
-      <h>83</h>
+      <x>66</x>
+      <y>294</y>
+      <w>30</w>
+      <h>66</h>
     </coordinates>
-    <panel_attributes>lt=.&gt;&gt;</panel_attributes>
-    <additional_attributes>21;70;21;49;98;49;98;21</additional_attributes>
+    <panel_attributes>lt=-&gt;&gt;</panel_attributes>
+    <additional_attributes>18;54;18;18</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>98</x>
-      <y>546</y>
-      <w>91</w>
-      <h>35</h>
+      <x>54</x>
+      <y>276</y>
+      <w>78</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>CaptPrésence
 --
-présence : bool 
+présence : bool
 --</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>84</x>
-      <y>504</y>
-      <w>62</w>
-      <h>55</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>21;21;49;21;49;42</additional_attributes>
-  </element>
-  <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>679</x>
-      <y>805</y>
-      <w>98</w>
-      <h>35</h>
+      <x>618</x>
+      <y>480</y>
+      <w>84</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>Stop
 --
@@ -175,48 +165,47 @@ comportement()
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>462</x>
-      <y>763</y>
-      <w>112</w>
-      <h>56</h>
+      <x>432</x>
+      <y>444</y>
+      <w>96</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>&lt;&lt; Abstract &gt;&gt;
 Feu
 --
 couleur : EnumColor
---
-comportement()</panel_attributes>
+--</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>525</x>
-      <y>616</y>
-      <w>90</w>
-      <h>97</h>
+      <x>486</x>
+      <y>318</y>
+      <w>78</w>
+      <h>84</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>77;21;77;56;21;56;21;84</additional_attributes>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>66;18;66;48;18;48;18;72</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>581</x>
-      <y>651</y>
-      <w>83</w>
-      <h>62</h>
+      <x>534</x>
+      <y>348</y>
+      <w>72</w>
+      <h>54</h>
     </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>70;49;70;21;21;21</additional_attributes>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>60;42;60;18;18;18</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>322</x>
-      <y>644</y>
-      <w>70</w>
-      <h>35</h>
+      <x>312</x>
+      <y>342</y>
+      <w>60</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>Régulateur
 --
@@ -227,81 +216,64 @@ regule() ^^</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>140</x>
-      <y>476</y>
-      <w>195</w>
-      <h>202</h>
+      <x>108</x>
+      <y>198</y>
+      <w>216</w>
+      <h>174</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=*
 m2=1
 p2=sonRégulateur
 p1=sesCapteurs</panel_attributes>
-    <additional_attributes>21;21;91;21;91;189;182;189</additional_attributes>
+    <additional_attributes>18;18;120;18;120;162;204;162</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>371</x>
-      <y>574</y>
-      <w>202</w>
-      <h>104</h>
+      <x>354</x>
+      <y>282</y>
+      <w>174</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=*
 p1=sonRégulateur
 p2=sesSémaphores</panel_attributes>
-    <additional_attributes>21;91;119;91;119;21;189;21</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>343</x>
-      <y>217</y>
-      <w>112</w>
-      <h>63</h>
-    </coordinates>
-    <panel_attributes>Voiture
---
-id : int
-vitesse_max : int
-LONGUEUR : int
---
-avancer()</panel_attributes>
-    <additional_attributes/>
+    <additional_attributes>18;78;102;78;102;18;162;18</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>364</x>
-      <y>343</y>
-      <w>34</w>
-      <h>132</h>
+      <x>408</x>
+      <y>72</y>
+      <w>138</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=  *
 m2=  1</panel_attributes>
-    <additional_attributes>21;21;21;119</additional_attributes>
+    <additional_attributes>18;18;126;18</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>343</x>
-      <y>378</y>
-      <w>55</w>
-      <h>34</h>
+      <x>456</x>
+      <y>30</y>
+      <w>30</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>21;21;42;21</additional_attributes>
+    <additional_attributes>18;18;18;60</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>266</x>
-      <y>371</y>
-      <w>98</w>
-      <h>56</h>
+      <x>444</x>
+      <y>0</y>
+      <w>84</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>EtatCourant
 --
@@ -313,26 +285,25 @@ sens : bool</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>777</x>
-      <y>469</y>
-      <w>76</w>
-      <h>111</h>
+      <x>702</x>
+      <y>192</y>
+      <w>150</w>
+      <h>84</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>21;21;63;21;63;98</additional_attributes>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>18;18;54;18;54;72;138;72</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>805</x>
-      <y>567</y>
-      <w>168</w>
-      <h>42</h>
+      <x>840</x>
+      <y>246</y>
+      <w>150</w>
+      <h>30</h>
     </coordinates>
-    <panel_attributes>Cmplx
+    <panel_attributes>Carrefour
 --
 --
-getNext(Segment comingFrom)
 getNext(Voiture v)
 </panel_attributes>
     <additional_attributes/>
@@ -340,26 +311,25 @@ getNext(Voiture v)
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>819</x>
-      <y>420</y>
-      <w>244</w>
-      <h>83</h>
+      <x>738</x>
+      <y>132</y>
+      <w>114</w>
+      <h>90</h>
     </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>21;70;231;70;231;21</additional_attributes>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>18;78;18;18;102;18</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>966</x>
-      <y>399</y>
-      <w>175</w>
-      <h>42</h>
+      <x>840</x>
+      <y>132</y>
+      <w>150</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>Simple
 --
 --
-getNext(Segment comingFrom)
 getNext(Voiture v)
 </panel_attributes>
     <additional_attributes/>
@@ -367,15 +337,14 @@ getNext(Voiture v)
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>777</x>
-      <y>399</y>
-      <w>175</w>
-      <h>42</h>
+      <x>840</x>
+      <y>186</y>
+      <w>150</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>Barrière
 --
 --
-getNext(Segment comingFrom)
 getNext(Voiture v)
 </panel_attributes>
     <additional_attributes/>
@@ -383,68 +352,32 @@ getNext(Voiture v)
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>840</x>
-      <y>420</y>
-      <w>34</w>
-      <h>83</h>
+      <x>738</x>
+      <y>192</y>
+      <w>114</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>18;18;102;18</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>222</x>
+      <y>150</y>
+      <w>36</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>21;70;21;21</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>602</x>
-      <y>406</y>
-      <w>188</w>
-      <h>90</h>
-    </coordinates>
-    <panel_attributes>lt=.
-m2=1</panel_attributes>
-    <additional_attributes>21;77;21;21;175;21</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>595</x>
-      <y>343</y>
-      <w>468</w>
-      <h>153</h>
-    </coordinates>
-    <panel_attributes>lt=.
-m2=2</panel_attributes>
-    <additional_attributes>21;140;21;21;455;21;455;56</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>581</x>
-      <y>462</y>
-      <w>237</w>
-      <h>139</h>
-    </coordinates>
-    <panel_attributes>lt=.
-m2=3..*</panel_attributes>
-    <additional_attributes>21;21;21;63;126;126;224;126</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>217</x>
-      <y>420</y>
-      <w>41</w>
-      <h>76</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>21;21;28;21;28;63</additional_attributes>
+    <additional_attributes>18;18;24;18;24;54</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>168</x>
-      <y>420</y>
-      <w>70</w>
-      <h>42</h>
+      <x>180</x>
+      <y>150</y>
+      <w>60</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>Position
 --
@@ -455,81 +388,31 @@ sens : bool</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>511</x>
-      <y>378</y>
-      <w>77</w>
-      <h>42</h>
+      <x>330</x>
+      <y>42</y>
+      <w>96</w>
+      <h>102</h>
     </coordinates>
-    <panel_attributes>Voie
---
-sens : bool
---</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>420</x>
-      <y>378</y>
-      <w>104</w>
-      <h>104</h>
-    </coordinates>
-    <panel_attributes>lt=-
-p1=sonSegment
-p2=sesVoies
-m1=1
-m2=2</panel_attributes>
-    <additional_attributes>21;91;56;91;56;21;91;21</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>819</x>
-      <y>651</y>
-      <w>98</w>
-      <h>21</h>
-    </coordinates>
-    <panel_attributes>Carrefour
---
---
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>70</x>
-      <y>287</y>
-      <w>126</w>
-      <h>21</h>
-    </coordinates>
-    <panel_attributes>Réseau routier</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>343</x>
-      <y>301</y>
-      <w>112</w>
-      <h>63</h>
-    </coordinates>
-    <panel_attributes>Véhicules
+    <panel_attributes>Véhicule
 --
 id : int
-vitesse_max : int
 longueur : int
+vitesse_max : int
 --
-avancer()</panel_attributes>
+(bool/void) avancer()
+void accelerer()
+void ralentir()
+void arreter()
+bool estArrete()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>693</x>
-      <y>756</y>
-      <w>70</w>
-      <h>21</h>
+      <x>630</x>
+      <y>438</y>
+      <w>60</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>Panneau
 --
@@ -539,10 +422,10 @@ avancer()</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>448</x>
-      <y>700</y>
-      <w>140</w>
-      <h>35</h>
+      <x>420</x>
+      <y>390</y>
+      <w>120</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>&lt;&lt; Abstract &gt;&gt;
 SémaphoreDynamique
@@ -553,21 +436,21 @@ SémaphoreDynamique
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>490</x>
-      <y>714</y>
-      <w>34</w>
-      <h>62</h>
+      <x>456</x>
+      <y>402</y>
+      <w>30</w>
+      <h>54</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>21;21;21;49</additional_attributes>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>18;18;18;42</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>623</x>
-      <y>700</y>
-      <w>133</w>
-      <h>35</h>
+      <x>570</x>
+      <y>390</y>
+      <w>114</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>&lt;&lt; Abstract &gt;&gt;
 SémaphoreStatique
@@ -579,32 +462,32 @@ SémaphoreStatique
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>707</x>
-      <y>714</y>
-      <w>34</w>
-      <h>55</h>
+      <x>642</x>
+      <y>402</y>
+      <w>30</w>
+      <h>48</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>21;21;21;42</additional_attributes>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>18;18;18;36</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>707</x>
-      <y>756</y>
-      <w>34</w>
-      <h>62</h>
+      <x>642</x>
+      <y>438</y>
+      <w>30</w>
+      <h>54</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>21;21;21;49</additional_attributes>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>18;18;18;42</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>378</x>
-      <y>868</y>
-      <w>126</w>
-      <h>42</h>
+      <x>360</x>
+      <y>534</y>
+      <w>108</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>FeuBi
 --
@@ -616,10 +499,10 @@ comportement()</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>546</x>
-      <y>868</y>
-      <w>126</w>
-      <h>42</h>
+      <x>504</x>
+      <y>534</y>
+      <w>108</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>FeuTri
 --
@@ -631,81 +514,98 @@ comportement()</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>497</x>
-      <y>833</y>
-      <w>83</w>
-      <h>48</h>
+      <x>462</x>
+      <y>504</y>
+      <w>72</w>
+      <h>42</h>
     </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>70;35;70;21;21;21</additional_attributes>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>60;30;60;18;18;18</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>441</x>
-      <y>798</y>
-      <w>90</w>
-      <h>83</h>
+      <x>414</x>
+      <y>474</y>
+      <w>78</w>
+      <h>72</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>77;21;77;56;21;56;21;70</additional_attributes>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>66;18;66;48;18;48;18;60</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>840</x>
-      <y>588</y>
-      <w>34</w>
-      <h>76</h>
+      <x>318</x>
+      <y>354</y>
+      <w>30</w>
+      <h>66</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>21;21;21;63</additional_attributes>
+    <panel_attributes>lt=-
+
+</panel_attributes>
+    <additional_attributes>18;18;18;54</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>322</x>
-      <y>714</y>
-      <w>70</w>
-      <h>21</h>
+      <x>312</x>
+      <y>408</y>
+      <w>60</w>
+      <h>36</h>
     </coordinates>
-    <panel_attributes>AlgoRégul</panel_attributes>
+    <panel_attributes>Algo
+--
+--</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>329</x>
-      <y>658</y>
-      <w>34</w>
-      <h>69</h>
+      <x>528</x>
+      <y>114</y>
+      <w>126</w>
+      <h>84</h>
     </coordinates>
-    <panel_attributes>lt=-
-
-</panel_attributes>
-    <additional_attributes>21;21;21;56</additional_attributes>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>18;18;18;36;114;36;114;72</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>140</x>
-      <y>287</y>
-      <w>216</w>
-      <h>195</h>
+      <x>372</x>
+      <y>132</y>
+      <w>186</w>
+      <h>66</h>
     </coordinates>
-    <panel_attributes>lt=-
-</panel_attributes>
-    <additional_attributes>21;21;119;147;203;182</additional_attributes>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>18;54;18;18;174;18</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>371</x>
-      <y>259</y>
-      <w>34</w>
-      <h>55</h>
+      <x>66</x>
+      <y>210</y>
+      <w>30</w>
+      <h>78</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>21;42;21;21</additional_attributes>
+    <panel_attributes>lt=-&gt;&gt;</panel_attributes>
+    <additional_attributes>18;66;18;18</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>534</x>
+      <y>78</y>
+      <w>120</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>Route/Parcourable
+--
+longueur : int
+--
+bool estLibre()
+int placeLibre(Voiture V)</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
