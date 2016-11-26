@@ -2,9 +2,13 @@ package simuRoute;
 
 public class Stop extends Panneau 
 {
+
+	/**
+	 * Arrete systematiquement le vehicule
+	 */
 	@Override
 	void comportement() 
 	{
-		// TODO Auto-generated method stub
+        this.sonEmplacement.voitureEnTete().arreter();
 	}
 }

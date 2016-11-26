@@ -27,7 +27,7 @@ public class FeuTriCol extends Feu
 	}
 
     /**
-     * Modifie le fonctionnement de la voiture en tete en fonction de la couleur du feu
+     * Modifie le fonctionnement du vehicule en tete en fonction de la couleur du feu
      */
     @Override
     public void comportement()

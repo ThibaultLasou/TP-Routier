@@ -31,7 +31,7 @@ public abstract class Feu extends SemaphoreDynamique
 	}
 
 	/**
-	 * Modifie le fonctionnement de la voiture en tete en fonction de la couleur du feu
+	 * Modifie le fonctionnement du vehicule en tete en fonction de la couleur du feu
 	 */
 	@Override
 	public void comportement()
