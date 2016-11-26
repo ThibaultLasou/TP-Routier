@@ -2,9 +2,11 @@ package simuRoute;
 
 public class FeuBiCol extends Feu 
 {
-	@Override
-	void changement() 
-	{
-		// TODO Auto-generated method stub
-	}
+    /**
+     * Constructeur
+     * @param couleur la couleur initiale
+     */
+    public FeuBiCol(EnumColor couleur) {
+        super(couleur);
+    }
 }
