@@ -7,5 +7,10 @@ public abstract class Jonction extends Route
 	static int Longueur = 1;
 	ArrayList<Segment> sesAcces;
 	
-	abstract Segment getNext(Vehicule v);
+	public Jonction() 
+	{
+		super(Longueur);
+	}
+	
+	abstract Segment segSuivant(Vehicule v);
 }

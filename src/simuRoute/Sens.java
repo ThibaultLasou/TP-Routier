@@ -5,7 +5,7 @@ public enum Sens
 	NEGATIF(0), 
 	POSITIF(1);
 	
-	private int ind;
+	int ind;
 	
 	Sens(int i)
 	{

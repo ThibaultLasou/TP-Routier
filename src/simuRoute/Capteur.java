@@ -1,5 +1,7 @@
 package simuRoute;
 
+
+
 public abstract class Capteur 
 {
 	Segment sonEmplacement;
@@ -7,5 +9,5 @@ public abstract class Capteur
 	int position;
 	Sens sens;
 	
-	abstract void getMesure();
+	abstract void getMesure()throws ErreurPositionVoiture ;
 }

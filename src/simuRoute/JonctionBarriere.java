@@ -1,9 +1,9 @@
 package simuRoute;
 
-public class JonctionBarrière extends Jonction 
+public class JonctionBarriere extends Jonction 
 {
 	@Override
-	Segment getNext(Vehicule v) 
+	Segment segSuivant(Vehicule v) 
 	{
 		// TODO Auto-generated method stub
 		return null;
