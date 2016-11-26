@@ -20,6 +20,9 @@ public class FeuTriCol extends Feu
 			case ORANGE:
 				this.couleur = EnumColor.ROUGE;
 				break;
+            case VERT:
+                this.couleur = EnumColor.ORANGE;
+                break;
 			default: // si le feu n'est pas orange, il est rouge ou vert
 				super.changement();
 				break;

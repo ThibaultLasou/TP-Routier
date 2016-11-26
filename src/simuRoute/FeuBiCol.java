@@ -9,4 +9,20 @@ public class FeuBiCol extends Feu
     public FeuBiCol(EnumColor couleur) {
         super(couleur);
     }
+
+    /**
+     * Effectue le changement de couleur
+     */
+    @Override
+    public void changement() {
+        switch (this.couleur){
+            case VERT:
+                this.couleur = EnumColor.ROUGE;
+                break;
+            default:
+                super.changement();
+                break;
+        }
+    }
+
 }

@@ -21,9 +21,6 @@ public abstract class Feu extends SemaphoreDynamique
 			case ROUGE:
 				this.couleur = EnumColor.VERT;
 				break;
-			case VERT:
-				this.couleur = EnumColor.ORANGE;
-				break;
 			default: // Si un probleme, par securite, le feu passe au rouge
 				this.couleur = EnumColor.ROUGE;
 				break;
