@@ -3,17 +3,17 @@ package simuRoute;
 public abstract class Route 
 {
 	int longueur;
-	Vehicule[] sesVehicules; 
+	Vehicule[][] sesVehicules; 
 	
 	public Route(int l)
 	{
 		this.longueur = l;
-		sesVehicules = new Vehicule[l];
+		sesVehicules = new Vehicule[2][l];
 	}
 	
-	Vehicule getVehicule(int pos)
+	Vehicule getVehicule(int pos, Sens sens)
 	{
-		return sesVehicules[pos];
+		return sesVehicules[sens.ind][pos];
 	}
 	
 	int placeLibre(Vehicule V)

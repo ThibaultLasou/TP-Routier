@@ -12,5 +12,5 @@ public abstract class Jonction extends Route
 		super(Longueur);
 	}
 	
-	abstract Segment getNext(Vehicule v);
+	abstract Segment segSuivant(Vehicule v);
 }
