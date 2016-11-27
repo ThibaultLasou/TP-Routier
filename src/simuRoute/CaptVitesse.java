@@ -17,7 +17,7 @@ public class CaptVitesse extends CaptPresence
 		{
 			try
 			{
-				vitesse = this.sonEmplacement.getVehicule(this.position, this.sens).sonEtat.getVitesse_inst();
+				vitesse = this.sonEmplacement.getVehicule(this.position, this.sens).getVitesse_inst();
 			}
 			catch (Exception e)
 			{
