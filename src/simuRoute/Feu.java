@@ -4,15 +4,19 @@ public abstract class Feu extends SemaphoreDynamique
 {
 	EnumColor couleur;
 
-	/**
-	 * Constructuer
-	 * @param couleur la couleur initiale
-	 */
-	public Feu(EnumColor couleur) {
+    /**
+     * Constructeur
+     * @param sens le sens choisi sur le Segment
+     * @param segment l'emplacement sur le Segment
+     * @param regulateur son Regulateur associe
+     * @param couleur sa couleur initiale
+     */
+	public Feu(Sens sens, Segment segment, Regulateur regulateur, EnumColor couleur) {
+		super(sens, segment, regulateur);
 		this.couleur = couleur;
 	}
 
-	/**
+    /**
 	 * Effectue le changement de couleur
 	 */
 	@Override
@@ -28,7 +32,7 @@ public abstract class Feu extends SemaphoreDynamique
 	}
 
 	/**
-	 * Modifie le fonctionnement du vehicule en tete en fonction de la couleur du feu
+	 * Modifie le comportement du vehicule en tete en fonction de la couleur du feu
 	 */
 	@Override
 	public void comportement()
