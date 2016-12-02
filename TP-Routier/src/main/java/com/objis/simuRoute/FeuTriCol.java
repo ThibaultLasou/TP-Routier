@@ -1,5 +1,9 @@
 package com.objis.simuRoute;
 
+/**
+ * Cette classe représente un feu tricolore rouge, orange et vert
+ * @author Patrice Camousseigt
+ */
 public class FeuTriCol extends Feu 
 {
 

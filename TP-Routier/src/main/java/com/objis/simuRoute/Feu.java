@@ -1,5 +1,9 @@
 package com.objis.simuRoute;
 
+/**
+ * Cette classe représente un feu
+ * @author Patrice Camousseigt
+ */
 public abstract class Feu extends SemaphoreDynamique
 {
 	EnumColor couleur;

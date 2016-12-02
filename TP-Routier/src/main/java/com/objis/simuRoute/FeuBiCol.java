@@ -1,5 +1,9 @@
 package com.objis.simuRoute;
 
+/**
+ * Cette classe représente un feu bicolore rouge et vert
+ * @author Patrice Camousseigt
+ */
 public class FeuBiCol extends Feu 
 {
 

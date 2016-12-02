@@ -1,24 +1,22 @@
 package com.objis.simuRoute;
 
-
 import junit.framework.TestCase;
 
+/**
+ * Test pour le FeuTriCol
+ * @author Patrice Camousseigt
+ */
 public class TestFeuTriCol extends TestCase {
 
-    public EnumColor testChangementVert(){
-        Feu feu = new FeuTriCol(Sens.POSITIF, new Segment(1), new Regulateur(), EnumColor.VERT);
-        feu.changement();
-        return feu.couleur;
-    }
-
-    public EnumColor testChangementOrange(){
-        Feu feu = new FeuTriCol(Sens.POSITIF, new Segment(1), new Regulateur(), EnumColor.ORANGE);
+    private EnumColor testChangement(EnumColor enumColor){
+        Feu feu = new FeuTriCol(Sens.POSITIF, new Segment(1), new Regulateur(), enumColor);
         feu.changement();
         return feu.couleur;
     }
 
     public void testChangement(){
-        assertEquals(testChangementVert(), EnumColor.ORANGE);
-        assertEquals(testChangementOrange(), EnumColor.ROUGE);
+        assertEquals(testChangement(EnumColor.VERT), EnumColor.ORANGE);
+        assertEquals(testChangement(EnumColor.ORANGE), EnumColor.ROUGE);
+        assertEquals(testChangement(EnumColor.ROUGE), EnumColor.VERT);
     }
 }
