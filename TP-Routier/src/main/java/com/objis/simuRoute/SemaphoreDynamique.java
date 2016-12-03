@@ -8,7 +8,7 @@ public abstract class SemaphoreDynamique extends Semaphore
      * @param sonEmplacement l'emplacement sur le Segment
      * @param sonRegulateur son Regulateur associe
 	 */
-	public SemaphoreDynamique(Sens sens, Segment sonEmplacement, Regulateur sonRegulateur) {
+	public SemaphoreDynamique(EnumSens sens, Segment sonEmplacement, Regulateur sonRegulateur) {
 		super(sens, sonEmplacement, sonRegulateur);
 	}
 

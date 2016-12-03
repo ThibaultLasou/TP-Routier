@@ -2,7 +2,7 @@ package com.objis.simuRoute;
 
 public abstract class Semaphore 
 {
-	Sens sens;
+	EnumSens sens;
 	Segment sonEmplacement;
 	Regulateur sonRegulateur;
 
@@ -12,7 +12,7 @@ public abstract class Semaphore
      * @param sonEmplacement l'emplacement sur le Segment
      * @param sonRegulateur son Regulateur associe
      */
-	public Semaphore(Sens sens, Segment sonEmplacement, Regulateur sonRegulateur) {
+	public Semaphore(EnumSens sens, Segment sonEmplacement, Regulateur sonRegulateur) {
 		this.sens = sens;
 		this.sonEmplacement = sonEmplacement;
 		this.sonRegulateur = sonRegulateur;

@@ -14,7 +14,7 @@ public class FeuBiCol extends Feu
      * @param regulateur son Regulateur associe
      * @param couleur sa couleur initiale
      */
-    public FeuBiCol(Sens sens, Segment segment, Regulateur regulateur, EnumColor couleur) {
+    public FeuBiCol(EnumSens sens, Segment segment, Regulateur regulateur, EnumColor couleur) {
         super(sens, segment, regulateur, couleur);
     }
 

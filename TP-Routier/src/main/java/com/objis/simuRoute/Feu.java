@@ -15,7 +15,7 @@ public abstract class Feu extends SemaphoreDynamique
      * @param regulateur son Regulateur associe
      * @param couleur sa couleur initiale
      */
-	public Feu(Sens sens, Segment segment, Regulateur regulateur, EnumColor couleur) {
+	public Feu(EnumSens sens, Segment segment, Regulateur regulateur, EnumColor couleur) {
 		super(sens, segment, regulateur);
 		this.couleur = couleur;
 	}
@@ -43,16 +43,14 @@ public abstract class Feu extends SemaphoreDynamique
 	{
 		switch (this.couleur){
 			case ROUGE:
-				this.sonEmplacement.voitureEnTete().arreter();
+				this.sonEmplacement.voitureEnTete(this.sens).arreter();
 				break;
 			case VERT:
-				this.sonEmplacement.voitureEnTete().avancer();
+				this.sonEmplacement.voitureEnTete(this.sens).avancer();
 				break;
 			default: // Si un probleme, par securite, la voiture s'arrete
-				this.sonEmplacement.voitureEnTete().arreter();
+				this.sonEmplacement.voitureEnTete(this.sens).arreter();
 				break;
 		}
 	}
-
 }
-

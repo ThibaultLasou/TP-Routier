@@ -14,7 +14,7 @@ public class FeuTriCol extends Feu
      * @param regulateur son Regulateur associe
      * @param couleur sa couleur initiale
      */
-    public FeuTriCol(Sens sens, Segment segment, Regulateur regulateur, EnumColor couleur) {
+    public FeuTriCol(EnumSens sens, Segment segment, Regulateur regulateur, EnumColor couleur) {
         super(sens, segment, regulateur, couleur);
     }
 
@@ -44,7 +44,7 @@ public class FeuTriCol extends Feu
     {
         switch (this.couleur){
             case ORANGE:
-                this.sonEmplacement.voitureEnTete().ralentir();
+                this.sonEmplacement.voitureEnTete(this.sens).ralentir();
                 break;
             default:
                 super.comportement();

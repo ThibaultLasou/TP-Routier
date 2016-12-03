@@ -11,9 +11,21 @@ public class Segment extends Route
 		sesExtremites = new Jonction[2];
 		saSignalisation = new Semaphore[2];
 	}
-	
-	Vehicule voitureEnTete()
+
+	Vehicule voitureEnTete(EnumSens s)
 	{
-		return null;	
+		return this.sesVehicules.get(s.ind).getFirst();	
+	}
+
+	@Override
+	Route segSuivant(Vehicule v) 
+	{
+		return sesExtremites[v.getSens().ind];
+	}
+
+	@Override
+	void finRoute(Vehicule v) 
+	{
+		this.saSignalisation[v.getSens().ind].comportement();
 	}
 }

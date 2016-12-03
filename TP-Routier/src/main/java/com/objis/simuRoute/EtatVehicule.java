@@ -3,7 +3,8 @@ package com.objis.simuRoute;
 public class EtatVehicule 
 {
 	Route saRoute;
+	Route etapeSuiv;
 	int position;
 	int vitesse_inst;
-	Sens sens;
+	EnumSens sens;
 }

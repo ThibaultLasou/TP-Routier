@@ -1,30 +1,70 @@
 package com.objis.simuRoute;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 public abstract class Route 
 {
 	int longueur;
-	Vehicule[][] sesVehicules;
+	ArrayList<LinkedList<Vehicule>> sesVehicules;
 	
 	public Route(int l)
 	{
 		this.longueur = l;
-		sesVehicules = new Vehicule[2][l];
+		sesVehicules = new ArrayList<LinkedList<Vehicule>>();
+		sesVehicules.add(EnumSens.NEGATIF.ind, new LinkedList<Vehicule>());
+		sesVehicules.add(EnumSens.POSITIF.ind, new LinkedList<Vehicule>());
+	}
+
+	Vehicule getVehicule(int pos, EnumSens sens)throws ErreurPositionVoiture
+	{
+		for(Vehicule v : sesVehicules.get(sens.ind))
+		{
+			if(v.getPosition() == pos)
+			{
+				return v;
+			}
+		}
+		throw new ErreurPositionVoiture("Pas de voiture a cette position");
+	}
+
+	int placeLibre(Vehicule vehic) throws ErreurPositionVoiture
+	{
+		int ind = sesVehicules.get(vehic.getSens().ind).indexOf(vehic)-1;
+		if (ind<0)
+		{
+			return this.longueur-1 - vehic.getPosition();
+		}
+		Vehicule prec = sesVehicules.get(vehic.getSens().ind).get(ind);
+		return vehic.getPosition() - (prec.getPosition()+prec.longueur-1);
 	}
 	
-	Vehicule getVehicule(int pos, Sens sens)throws ErreurPositionVoiture
+	boolean estLibre(EnumSens sens)
 	{
-		if (sesVehicules[sens.ind][pos].getClass() == null)
-		{
-			throw new ErreurPositionVoiture("Pas de véhicule à cette position");
-		}
-		else
-		{
-			return sesVehicules[sens.ind][pos];
-		}
+		// le premier de la liste est-il à une extrémité ?
+		return !estFin(sesVehicules.get(sens.ind).getFirst().getPosition(), sens);
 	}
 	
-	int placeLibre(Vehicule V)
+	boolean estFin(int pos, EnumSens sens)
 	{
-		return 0;
+		return (pos == 0 && sens == EnumSens.NEGATIF) || 
+				(pos == longueur-1 && sens == EnumSens.POSITIF);
 	}
+	
+	void entreeRoute(Vehicule v)
+	{
+		v.getSaRoute().sesVehicules.get(v.getSens().ind).pollFirst();
+		this.sesVehicules.get(v.getSens().ind).addLast(v);
+		v.setSaRoute(this);
+		v.setEtapeSuivante(this.segSuivant(v));
+	}
+	
+	void finRoute(Vehicule v)
+	{
+		
+	}
+	
+	abstract Route segSuivant(Vehicule v);
+	
+	
 }

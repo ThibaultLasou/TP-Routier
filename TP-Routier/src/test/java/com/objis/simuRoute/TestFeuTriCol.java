@@ -9,7 +9,7 @@ import junit.framework.TestCase;
 public class TestFeuTriCol extends TestCase {
 
     private EnumColor testChangement(EnumColor enumColor){
-        Feu feu = new FeuTriCol(Sens.POSITIF, new Segment(1), new Regulateur(), enumColor);
+        Feu feu = new FeuTriCol(EnumSens.POSITIF, new Segment(1), new Regulateur(), enumColor);
         feu.changement();
         return feu.couleur;
     }

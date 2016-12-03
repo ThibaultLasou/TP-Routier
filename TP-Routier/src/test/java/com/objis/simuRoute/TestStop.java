@@ -4,7 +4,7 @@ import junit.framework.TestCase;
 
 public class TestStop extends TestCase {
 
-    private final static Sens SENS_POSITIF = Sens.POSITIF;
+    private final static EnumSens SENS_POSITIF = EnumSens.POSITIF;
 
     public Panneau testComportementStop(){
         return new Stop(SENS_POSITIF, new Segment(1), new Regulateur());

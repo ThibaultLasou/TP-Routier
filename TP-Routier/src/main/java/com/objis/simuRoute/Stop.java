@@ -9,7 +9,7 @@ public class Stop extends Panneau
      * @param segment l'emplacement sur le Segment
      * @param regulateur son Regulateur associe
 	 */
-	public Stop(Sens sens, Segment segment, Regulateur regulateur) {
+	public Stop(EnumSens sens, Segment segment, Regulateur regulateur) {
 		super(sens, segment, regulateur);
 	}
 
@@ -19,6 +19,6 @@ public class Stop extends Panneau
 	@Override
 	void comportement() 
 	{
-        this.sonEmplacement.voitureEnTete().arreter();
+        this.sonEmplacement.voitureEnTete(sens).arreter();
 	}
 }

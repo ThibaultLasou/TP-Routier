@@ -12,7 +12,7 @@ public abstract class Capteur
 	Segment sonEmplacement;
 	Regulateur sonRegulateur;
 	int position;
-	Sens sens;
+	EnumSens sens;
 	
 	abstract void getMesure()throws ErreurPositionVoiture ;
 }

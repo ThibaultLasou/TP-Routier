@@ -8,7 +8,7 @@ public abstract class Panneau extends SemaphoreStatique
 	 * @param sonEmplacement l'emplacement sur le Segment
 	 * @param sonRegulateur son Regulateur associe
 	 */
-	public Panneau(Sens sens, Segment sonEmplacement, Regulateur sonRegulateur) {
+	public Panneau(EnumSens sens, Segment sonEmplacement, Regulateur sonRegulateur) {
 		super(sens, sonEmplacement, sonRegulateur);
 	}
 

@@ -39,6 +39,16 @@ public class Vehicule
 		}
 	}
 	
+	public void setEtapeSuivante(Route r)
+	{
+		this.sonEtat.etapeSuiv = r;
+	}
+	
+	public Route getEtapeSuivante()
+	{
+		return this.sonEtat.etapeSuiv;
+	}
+	
 	public Route getSaRoute() 
 	{
 		return sonEtat.saRoute;
@@ -68,12 +78,12 @@ public class Vehicule
 		this.sonEtat.vitesse_inst = vitesse_inst;
 	}
 	
-	public Sens getSens() 
+	public EnumSens getSens() 
 	{
 		return sonEtat.sens;
 	}
 	
-	public void setSens(Sens sens) 
+	public void setSens(EnumSens sens) 
 	{
 		this.sonEtat.sens = sens;
 	}
