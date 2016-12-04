@@ -1,6 +1,9 @@
 package com.objis.simuRoute;
 
-public class Algo 
-{
+import java.util.Collection;
 
+public interface Algo 
+{
+	void regulator(Collection<? extends Capteur> capts, 
+			Collection<? extends SemaphoreDynamique> sems);
 }
