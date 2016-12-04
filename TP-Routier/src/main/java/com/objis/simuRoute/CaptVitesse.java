@@ -5,23 +5,35 @@ package com.objis.simuRoute;
  *
  */
 
-public class CaptVitesse extends CaptPresence 
+public class CaptVitesse extends Capteur
 {
+	CaptPresence presence;
 	int vitesse;
 	
-	@Override
-	void getMesure() throws ErreurPositionVoiture
+	public CaptVitesse() 
 	{
-		super.getMesure(); // initialise le capteur de présence
-		if(this.presence)
+		presence = new CaptPresence();
+	}
+	
+	@Override
+	Integer getMesure()
+	{
+		if(presence.getMesure())
 		{
-			try
-			{
-				vitesse = this.sonEmplacement.getVehicule(this.position, this.sens).getVitesse_inst();
-			}
-			catch (Exception e)
-			{
-			}
+			return vitesse;
+		}
+		else
+		{
+			//TODO
+			return -1;
+		}
+	}
+	void mesurer()
+	{
+		presence.mesurer(); // initialise le capteur de présence
+		if(this.presence.getMesure())
+		{
+			vitesse = this.sonEmplacement.getVehicule(this.position, this.sens).getVitesse_inst();
 		}
 	}
 }

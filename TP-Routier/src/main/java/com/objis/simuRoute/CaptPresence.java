@@ -9,17 +9,22 @@ public class CaptPresence extends Capteur
 	
 	/*l'attribut presence est à "vrai" s'il y a une voiture pendant l’unité de temps courante, "faux" sinon*/
 	@Override
-	void getMesure() throws ErreurPositionVoiture
+	Boolean getMesure()
 	{
-		
-		try
+		return presence;
+	}
+
+	@Override
+	void mesurer() 
+	{
+		if(this.sonEmplacement.getVehicule(this.position, this.sens) != null)
 		{
-			this.sonEmplacement.getVehicule(this.position, this.sens);
 			presence = true;
 		}
-		catch (Exception e)
+		else
 		{
 			presence = false;
 		}
+		
 	}
 }

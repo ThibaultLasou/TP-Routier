@@ -14,5 +14,7 @@ public abstract class Capteur
 	int position;
 	EnumSens sens;
 	
-	abstract void getMesure()throws ErreurPositionVoiture ;
+	abstract void mesurer();
+	
+	abstract Object getMesure();
 }
