@@ -12,5 +12,19 @@ public abstract class Jonction extends Route
 		super(Longueur);
 	}
 	
+	void entreeRoute(Vehicule v)
+	{
+		super.entreeRoute(v);
+		int i = sesAcces.indexOf(v.sonEtat.etapeSuiv);
+		if(sesAcces.get(i).sesExtremites[0] == this)
+		{
+			v.setSens(EnumSens.POSITIF);
+		}
+		else
+		{
+			v.setSens(EnumSens.NEGATIF);
+		}
+	}
+	
 	abstract Segment segSuivant(Vehicule v);
 }

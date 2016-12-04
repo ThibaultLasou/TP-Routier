@@ -16,7 +16,7 @@ public abstract class Route
 		sesVehicules.add(EnumSens.POSITIF.ind, new LinkedList<Vehicule>());
 	}
 
-	Vehicule getVehicule(int pos, EnumSens sens)throws ErreurPositionVoiture
+	Vehicule getVehicule(int pos, EnumSens sens)//throws ErreurPositionVoiture
 	{
 		for(Vehicule v : sesVehicules.get(sens.ind))
 		{
@@ -25,7 +25,8 @@ public abstract class Route
 				return v;
 			}
 		}
-		throw new ErreurPositionVoiture("Pas de voiture a cette position");
+		return null;
+		//throw new ErreurPositionVoiture("Pas de voiture a cette position");
 	}
 
 	int placeLibre(Vehicule vehic) throws ErreurPositionVoiture
@@ -56,6 +57,14 @@ public abstract class Route
 		v.getSaRoute().sesVehicules.get(v.getSens().ind).pollFirst();
 		this.sesVehicules.get(v.getSens().ind).addLast(v);
 		v.setSaRoute(this);
+		if(v.getSens() == EnumSens.POSITIF)
+		{
+			v.setPosition(0);
+		}
+		else
+		{
+			v.setPosition(longueur-1);
+		}
 		v.setEtapeSuivante(this.segSuivant(v));
 	}
 	

@@ -9,7 +9,38 @@ public class Vehicule
 	
 	void avancer() // boolean
 	{
+		/* soit vitesse max définie par une sémaphore, soit max du vehicule*/
+		if(sonEtat.saRoute.estFin(getPosition(), getSens()))
+		{
+			sonEtat.saRoute.finRoute(this);
+		}
+		else
+		{
+			sonEtat.vitesse_inst = vitesse_max;
+		}
 		
+		for(int i=1;i<sonEtat.vitesse_inst;)
+		{
+			if(sonEtat.saRoute.estFin(getPosition(), getSens()))
+			{
+				sonEtat.saRoute.finRoute(this);
+				continue;
+			}
+			else if(sonEtat.saRoute.getVehicule(getPosition()+(1*getSens().direction), 
+					getSens()) == null)
+			{
+				sonEtat.position++;
+				i++;
+			}
+			if(sonEtat.saRoute.estFin(getPosition(), getSens()))
+			{
+				if(sonEtat.etapeSuiv.estLibre(getSens()))
+				{
+					sonEtat.etapeSuiv.entreeRoute(this);
+					i++;
+				}
+			}
+		}
 	}
 	
 	void accelerer()
