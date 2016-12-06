@@ -1,7 +1,7 @@
 package com.objis.simuRoute;
 
 /**
- * Cette classe représente un feu tricolore rouge, orange et vert
+ * Cette classe représente un feu tricolore
  * @author Patrice Camousseigt
  */
 public class FeuTriCol extends Feu 
@@ -11,11 +11,9 @@ public class FeuTriCol extends Feu
      * Constructeur
      * @param sens le sens choisi sur le Segment
      * @param segment l'emplacement sur le Segment
-     * @param regulateur son Regulateur associe
-     * @param couleur sa couleur initiale
      */
-    public FeuTriCol(EnumSens sens, Segment segment, Regulateur regulateur, EnumColor couleur) {
-        super(sens, segment, regulateur, couleur);
+    public FeuTriCol(EnumSens sens, Segment segment) {
+        super(sens, segment);
     }
 
     /**
@@ -23,13 +21,16 @@ public class FeuTriCol extends Feu
      */
     @Override
     public void changement() {
-		switch (this.couleur){
-            case VERT:
-                this.couleur = EnumColor.ORANGE;
+		switch (this.semaphoreEtatCourant){
+            case AUTORISATION:
+                this.semaphoreEtatCourant = EnumSemaphoreEtatCourant.ATTENTION;
                 break;
-			case ORANGE:
-				this.couleur = EnumColor.ROUGE;
+            case ATTENTION:
+                this.semaphoreEtatCourant = EnumSemaphoreEtatCourant.INTERDICTION;
 				break;
+            case INTERDICTION:
+                this.semaphoreEtatCourant = EnumSemaphoreEtatCourant.AUTORISATION;
+                break;
 			default:
 				super.changement();
 				break;
@@ -42,8 +43,8 @@ public class FeuTriCol extends Feu
     @Override
     public void comportement()
     {
-        switch (this.couleur){
-            case ORANGE:
+        switch (this.semaphoreEtatCourant){
+            case ATTENTION:
                 this.sonEmplacement.voitureEnTete(this.sens).ralentir();
                 break;
             default:

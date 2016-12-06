@@ -1,9 +1,18 @@
 package com.objis.simuRoute;
 
-import java.util.Collection;
+import javafx.util.Pair;
 
+import java.util.ArrayList;
+
+/**
+ * Cette interface permet d'utiliser differents algorithme
+ */
 public interface Algo 
 {
-	void regulator(Collection<? extends Capteur> capts, 
-			Collection<? extends SemaphoreDynamique> sems);
+	/**
+	 * Permet de reguler le trafic en utilisant les capteurs et les semaphores dynamiques dans leurs etats courants
+	 * @param capts les capteurs utilises
+	 * @param sems les semaphores dynamiques utilises
+	 */
+	void reguler(ArrayList<Capteur> capts, ArrayList<Pair<SemaphoreDynamique, Integer>> sems);
 }

@@ -8,15 +8,20 @@ import junit.framework.TestCase;
  */
 public class TestFeuTriCol extends TestCase {
 
-    private EnumColor testChangement(EnumColor enumColor){
-        Feu feu = new FeuTriCol(EnumSens.POSITIF, new Segment(1), new Regulateur(), enumColor);
-        feu.changement();
-        return feu.couleur;
-    }
 
     public void testChangement(){
-        assertEquals(testChangement(EnumColor.VERT), EnumColor.ORANGE);
-        assertEquals(testChangement(EnumColor.ORANGE), EnumColor.ROUGE);
-        assertEquals(testChangement(EnumColor.ROUGE), EnumColor.VERT);
+        Feu feu = new FeuTriCol(EnumSens.POSITIF, new Segment(1));
+        assertEquals(feu.semaphoreEtatCourant.getEnumColor(), EnumColor.ROUGE);
+        assertEquals(feu.semaphoreEtatCourant, EnumSemaphoreEtatCourant.INTERDICTION);
+        feu.changement();
+        assertEquals(feu.semaphoreEtatCourant.getEnumColor(), EnumColor.VERT);
+        assertEquals(feu.semaphoreEtatCourant, EnumSemaphoreEtatCourant.AUTORISATION);
+        feu.changement();
+        assertEquals(feu.semaphoreEtatCourant.getEnumColor(), EnumColor.ORANGE);
+        assertEquals(feu.semaphoreEtatCourant, EnumSemaphoreEtatCourant.ATTENTION);
+        feu.changement();
+        assertEquals(feu.semaphoreEtatCourant.getEnumColor(), EnumColor.ROUGE);
+        assertEquals(feu.semaphoreEtatCourant, EnumSemaphoreEtatCourant.INTERDICTION);
+        feu.changement();
     }
 }

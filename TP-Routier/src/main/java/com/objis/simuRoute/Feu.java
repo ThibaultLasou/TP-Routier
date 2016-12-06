@@ -6,18 +6,13 @@ package com.objis.simuRoute;
  */
 public abstract class Feu extends SemaphoreDynamique
 {
-	EnumColor couleur;
-
     /**
      * Constructeur
      * @param sens le sens choisi sur le Segment
      * @param segment l'emplacement sur le Segment
-     * @param regulateur son Regulateur associe
-     * @param couleur sa couleur initiale
      */
-	public Feu(EnumSens sens, Segment segment, Regulateur regulateur, EnumColor couleur) {
-		super(sens, segment, regulateur);
-		this.couleur = couleur;
+	public Feu(EnumSens sens, Segment segment) {
+		super(sens, segment);
 	}
 
     /**
@@ -25,12 +20,9 @@ public abstract class Feu extends SemaphoreDynamique
 	 */
 	@Override
 	public void changement() {
-		switch (this.couleur){
-			case ROUGE:
-				this.couleur = EnumColor.VERT;
-				break;
+		switch (this.semaphoreEtatCourant){
 			default: // Si un probleme, par securite, le feu passe au rouge
-				this.couleur = EnumColor.ROUGE;
+                this.semaphoreEtatCourant = EnumSemaphoreEtatCourant.INTERDICTION;
 				break;
 		}
 	}
@@ -39,13 +31,12 @@ public abstract class Feu extends SemaphoreDynamique
 	 * Modifie le comportement du vehicule en tete en fonction de la couleur du feu
 	 */
 	@Override
-	public void comportement()
-	{
-		switch (this.couleur){
-			case ROUGE:
+	public void comportement() {
+		switch (this.semaphoreEtatCourant){
+            case INTERDICTION:
 				this.sonEmplacement.voitureEnTete(this.sens).arreter();
 				break;
-			case VERT:
+            case AUTORISATION:
 				this.sonEmplacement.voitureEnTete(this.sens).avancer();
 				break;
 			default: // Si un probleme, par securite, la voiture s'arrete
@@ -53,4 +44,14 @@ public abstract class Feu extends SemaphoreDynamique
 				break;
 		}
 	}
+
+    /**
+     * Reinitialise le feu en le passant le feu au rouge
+     */
+    @Override
+    void reinitialisation() {
+        this.semaphoreEtatCourant = EnumSemaphoreEtatCourant.INTERDICTION;
+    }
+
+
 }
