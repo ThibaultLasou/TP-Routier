@@ -7,10 +7,9 @@ public abstract class SemaphoreStatique extends Semaphore
      * Constructeur
      * @param sens le sens choisi sur le Segment
      * @param sonEmplacement l'emplacement sur le Segment
-     * @param sonRegulateur son Regulateur associe
 	 */
-	public SemaphoreStatique(EnumSens sens, Segment sonEmplacement, Regulateur sonRegulateur) {
-		super(sens, sonEmplacement, sonRegulateur);
+	public SemaphoreStatique(EnumSens sens, Segment sonEmplacement) {
+		super(sens, sonEmplacement);
 	}
 
 	/**

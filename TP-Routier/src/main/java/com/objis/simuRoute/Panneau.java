@@ -1,15 +1,18 @@
 package com.objis.simuRoute;
 
+/**
+ * Panneau
+ * @author Patrice Camousseigt
+ */
 public abstract class Panneau extends SemaphoreStatique 
 {
 	/**
 	 * Constructeur
 	 * @param sens le sens choisi sur le Segment
 	 * @param sonEmplacement l'emplacement sur le Segment
-	 * @param sonRegulateur son Regulateur associe
 	 */
-	public Panneau(EnumSens sens, Segment sonEmplacement, Regulateur sonRegulateur) {
-		super(sens, sonEmplacement, sonRegulateur);
+	public Panneau(EnumSens sens, Segment sonEmplacement) {
+		super(sens, sonEmplacement);
 	}
 
 	/**

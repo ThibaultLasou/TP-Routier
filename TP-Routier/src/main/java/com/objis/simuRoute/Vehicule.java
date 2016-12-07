@@ -26,8 +26,7 @@ public class Vehicule
 				sonEtat.saRoute.finRoute(this);
 				continue;
 			}
-			else if(sonEtat.saRoute.getVehicule(getPosition()+(1*getSens().direction), 
-					getSens()) == null)
+			else if(sonEtat.saRoute.getVehicule(getPosition()+getSens().direction, getSens()) == null)
 			{
 				sonEtat.position++;
 				i++;

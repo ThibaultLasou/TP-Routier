@@ -1,25 +1,28 @@
 package com.objis.simuRoute;
 
+/**
+ * Les semaphores
+ */
 public abstract class Semaphore 
 {
 	EnumSens sens;
 	Segment sonEmplacement;
-	Regulateur sonRegulateur;
+	EnumSemaphoreEtatCourant semaphoreEtatCourant;
 
     /**
      * Constructeur
      * @param sens le sens choisi sur le Segment
      * @param sonEmplacement l'emplacement sur le Segment
-     * @param sonRegulateur son Regulateur associe
      */
-	public Semaphore(EnumSens sens, Segment sonEmplacement, Regulateur sonRegulateur) {
+	public Semaphore(EnumSens sens, Segment sonEmplacement) {
 		this.sens = sens;
 		this.sonEmplacement = sonEmplacement;
-		this.sonRegulateur = sonRegulateur;
+		this.semaphoreEtatCourant = EnumSemaphoreEtatCourant.INTERDICTION; // interdit par defaut
 	}
 
     /**
      * Modifie le comportement du vehicule en tete en fionction de l'etat du semaphore
      */
 	abstract void comportement();
+
 }
