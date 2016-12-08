@@ -1,5 +1,6 @@
 package com.objis.simuRoute;
 
+import com.objis.simuRoute.AlgoRegulation.AlgoChacunSonTour;
 import junit.framework.TestCase;
 
 import java.util.ArrayList;

@@ -23,7 +23,7 @@ public abstract class SemaphoreDynamique extends Semaphore
 	/**
 	 * Modifie l'etat de la semaphore
 	 */
-	abstract void changement();
+	public abstract void changement();
 
     /**
      * Remet la semaphore a son état d'originie souhaitee

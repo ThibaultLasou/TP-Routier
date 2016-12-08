@@ -1,5 +1,8 @@
-package com.objis.simuRoute;
+package com.objis.simuRoute.AlgoRegulation;
 
+import com.objis.simuRoute.Algo;
+import com.objis.simuRoute.Capteur;
+import com.objis.simuRoute.SemaphoreDynamique;
 import javafx.util.Pair;
 
 import java.util.ArrayList;
