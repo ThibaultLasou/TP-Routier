@@ -5,7 +5,7 @@ import junit.framework.TestCase;
 public class TestStop extends TestCase {
 
     public void testComportement(){
-        Vehicule vehicule = new Vehicule();
+        //Vehicule vehicule = new Vehicule();
     }
 
     /*
