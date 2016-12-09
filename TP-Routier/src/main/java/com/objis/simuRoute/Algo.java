@@ -5,7 +5,8 @@ import javafx.util.Pair;
 import java.util.ArrayList;
 
 /**
- * Cette interface permet d'utiliser differents algorithme
+ * Cette interface permet d'utiliser differents algorithmes de regulation
+ * @author Patrice Camousseigt
  */
 public interface Algo 
 {

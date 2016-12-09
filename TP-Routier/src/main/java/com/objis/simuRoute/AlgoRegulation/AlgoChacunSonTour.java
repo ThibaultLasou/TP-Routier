@@ -11,12 +11,12 @@ import java.util.ArrayList;
  * Le principe de cet algorithme est que chaque semaphore dynamique est traite de la meme facon independemment du trafic
  * Tous les semaphores vont chacun leur tour autoriser les vehicules a passer et ensuite interdire
  * pour laisser le semaphore suivant faire de meme
- * Un seul semaphore dynamique a la fois laisse les vehicules passer
+ * Un seul semaphore dynamique a la fois autorise les vehicules a passer
  * @author Patrice Camousseigt
  */
 public class AlgoChacunSonTour implements Algo {
 
-    // chaque temps d'attente pour chaque etat des semaphores dynamiques
+    // temps d'attente pour chaque etat des semaphores dynamiques
     // pas d'attente particuliere pour l'interdiction car peu d'interet a ce qu'aucune voiture n'avance
     // si le cas devient interessant, pour des travaux par exemple, il suffit d'incrementer TEMPS_INTERDICTION
     private static final int TEMPS_AUTORISATION = 1;
@@ -37,12 +37,19 @@ public class AlgoChacunSonTour implements Algo {
      */
     public void reguler(ArrayList<Capteur> capts, ArrayList<Pair<SemaphoreDynamique, Integer>> sems) {
         Pair<SemaphoreDynamique, Integer> pair = sems.get(indiceSemaphoreCourant);
-        if(pair.getValue() > 0){ // si le semaphore doit encore attendre pour changer d'etat
+
+        if(pair.getValue() > 0){
+            // si le semaphore doit encore attendre pour changer d'etat
             sems.set(indiceSemaphoreCourant, new Pair<SemaphoreDynamique, Integer>(pair.getKey(),
-                    pair.getValue() - UNITE_DE_TEMPS));
+                    pair.getValue() - UNITE_DE_TEMPS)); // on retire une unite de temps a son compteur
+
             if(sems.get(indiceSemaphoreCourant).getKey().etatCourantIsInterdiction()
-                    && sems.get(indiceSemaphoreCourant).getValue() == 0){ // si le semaphore dynamique a fait un cycle complet de ses etats
-                indiceSemaphoreCourant = (indiceSemaphoreCourant + 1) % sems.size(); // si fin de liste on recommence au premier semaphore
+                    && sems.get(indiceSemaphoreCourant).getValue() == 0){
+                // si le semaphore est en etat d'interdiction et
+                // si le semaphore dynamique a fait un cycle complet de ses etats, cad compteur = 0
+
+                // si fin de liste on recommence au premier semaphore
+                indiceSemaphoreCourant = (indiceSemaphoreCourant + 1) % sems.size();
             }
         }
         else{

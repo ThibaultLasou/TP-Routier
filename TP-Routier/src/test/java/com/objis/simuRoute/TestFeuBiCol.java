@@ -40,4 +40,18 @@ public class TestFeuBiCol extends TestCase {
         assertEquals(feuVert2.semaphoreEtatCourant, EnumSemaphoreEtatCourant.AUTORISATION);
         assertEquals(feuVert2.semaphoreEtatCourant.getEnumColor(), EnumColor.VERT);
     }
+
+    public void testReinitialisation(){
+        Feu feu0 = new FeuTriCol(EnumSens.POSITIF, new Segment(1));
+        feu0.changement();
+        feu0.reinitialisation();
+        assertEquals(feu0.semaphoreEtatCourant.getEnumColor(), EnumColor.ROUGE);
+        assertEquals(feu0.semaphoreEtatCourant, EnumSemaphoreEtatCourant.INTERDICTION);
+        Feu feu1 = new FeuTriCol(EnumSens.POSITIF, new Segment(1));
+        feu0.changement();
+        feu0.changement();
+        feu1.reinitialisation();
+        assertEquals(feu1.semaphoreEtatCourant.getEnumColor(), EnumColor.ROUGE);
+        assertEquals(feu1.semaphoreEtatCourant, EnumSemaphoreEtatCourant.INTERDICTION);
+    }
 }
