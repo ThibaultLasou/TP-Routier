@@ -4,7 +4,7 @@ import javafx.util.Pair;
 import java.util.ArrayList;
 
 /**
- * Regule les semaphores dynamiques en fonction des capteurs en utilisant un algorithme
+ * Regule les semaphores dynamiques en fonction des capteurs en utilisant un algorithme de regulation
  * @author Patrice Camousseigt
  */
 public class Regulateur 
@@ -13,7 +13,7 @@ public class Regulateur
 	ArrayList<Capteur> sesCapteurs;
 	Algo sonAlgo;
 
-	// compteur en unite de temps correspondant a l'attente pour un semaphore avant de changer d'etat
+	// compteur initial en unite de temps correspondant a l'attente pour un semaphore avant de changer d'etat
 	private static final int INITIALISATION_COMPTEUR = 0;
 
     /**
@@ -29,14 +29,14 @@ public class Regulateur
     }
 
     /**
-     * Initialise une liste de paire avec les semaphores dynamiques et leurs compteurs initialise
+     * Initialise une liste de paire avec les semaphores dynamiques et leurs compteurs initialises
      * @param sesSemaphoreDynamique la liste des semaphores dynamiques
      * @return la liste de paire de semaphore dynamique avec leurs compteurs initialises
      */
     private ArrayList<Pair<SemaphoreDynamique, Integer>> initialisation(ArrayList<SemaphoreDynamique> sesSemaphoreDynamique){
         ArrayList<Pair<SemaphoreDynamique, Integer>> arrayPair = new ArrayList<Pair<SemaphoreDynamique, Integer>>();
         for(SemaphoreDynamique semDyn : sesSemaphoreDynamique){
-            semDyn.reinitialisation();
+            semDyn.reinitialisation(); // on reinitialise toutes les semaphores dynamiques
             Pair<SemaphoreDynamique, Integer> pair =
                     new Pair<SemaphoreDynamique, Integer>(semDyn, INITIALISATION_COMPTEUR);
             arrayPair.add(pair);

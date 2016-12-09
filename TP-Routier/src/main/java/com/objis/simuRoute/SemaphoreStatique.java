@@ -1,5 +1,9 @@
 package com.objis.simuRoute;
 
+/**
+ * Les semaphores statiques
+ * @author Patrice Camousseigt
+ */
 public abstract class SemaphoreStatique extends Semaphore
 {
 

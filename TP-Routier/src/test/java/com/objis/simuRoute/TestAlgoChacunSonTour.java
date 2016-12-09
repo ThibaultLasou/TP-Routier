@@ -6,6 +6,7 @@ import junit.framework.TestCase;
 import java.util.ArrayList;
 
 /**
+ * Test pour AlgoChacunSonTour
  * @author Patrice Camousseigt
  */
 public class TestAlgoChacunSonTour extends TestCase {

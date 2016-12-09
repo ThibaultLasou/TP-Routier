@@ -2,6 +2,7 @@ package com.objis.simuRoute;
 
 /**
  * Les semaphores
+ * @author Patrice Camousseigt
  */
 public abstract class Semaphore 
 {
