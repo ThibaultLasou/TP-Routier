@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * Tous les semaphores vont chacun leur tour autoriser les vehicules a passer et ensuite interdire
  * pour laisser le semaphore suivant faire de meme
  * Un seul semaphore dynamique a la fois autorise les vehicules a passer
+ * Cet algorithme de regulation ne prend pas en compte les mesures des capteurs
  * @author Patrice Camousseigt
  */
 public class AlgoChacunSonTour implements Algo {
