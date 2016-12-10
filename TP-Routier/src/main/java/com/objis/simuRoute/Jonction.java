@@ -15,17 +15,27 @@ public abstract class Jonction extends Route
 		super(Longueur);
 	}
 	
-	void entreeRoute(Vehicule v)
+	@Override
+	void finRoute(Vehicule v)
 	{
-		super.entreeRoute(v);
-		int i = sesAcces.indexOf(v.sonEtat.etapeSuiv);
-		if(sesAcces.get(i).sesExtremites[0] == this)
+		int i = sesAcces.indexOf(v.etapeSuiv);
+		EnumSens nextSens;
+		if(sesAcces.get(i).sesExtremites[0] == this) // change le sens pour entrer sur la prochaine route
 		{
-			v.setSens(EnumSens.POSITIF);
+			nextSens = EnumSens.POSITIF;
 		}
 		else
 		{
-			v.setSens(EnumSens.NEGATIF);
+			nextSens = EnumSens.NEGATIF;
+		}
+		if(nextSens != v.getSens())
+		{
+			if(estLibre(nextSens))
+			{
+				this.sesVehicules.get(v.getSens().ind).poll();
+				this.sesVehicules.get(nextSens.ind).offerLast(v);
+				v.setSens(nextSens);
+			}
 		}
 	}
 

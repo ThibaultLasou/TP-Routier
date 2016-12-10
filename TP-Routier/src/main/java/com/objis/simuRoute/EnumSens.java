@@ -8,7 +8,7 @@ public enum EnumSens
 	int ind;
 	int direction;
 	
-	EnumSens(int i, int d)
+	private EnumSens(int i, int d)
 	{
 		this.ind = i;
 		this.direction = d;
@@ -20,5 +20,17 @@ public enum EnumSens
 
 	public int getDirection() {
 		return direction;
+	}
+	
+	public EnumSens sensInverse() 
+	{
+		if(this == EnumSens.POSITIF)
+		{
+			return EnumSens.NEGATIF;
+		}
+		else
+		{
+			return EnumSens.POSITIF;
+		}
 	}
 }
