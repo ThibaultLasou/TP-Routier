@@ -9,12 +9,12 @@ public class CaptVitesse extends Capteur
 {
 	CaptPresence presence;
 	int vitesse;
-	
-	public CaptVitesse() 
-	{
-		presence = new CaptPresence();
+
+	public CaptVitesse(Segment sonEmplacement, Regulateur sonRegulateur, int position, EnumSens sens) {
+		super(sonEmplacement, sonRegulateur, position, sens);
 	}
-	
+
+
 	@Override
 	public Integer getMesure()
 	{
@@ -42,5 +42,13 @@ public class CaptVitesse extends Capteur
 	@Override
 	public boolean isPresence() {
 		return presence.isPresence();
+	}
+
+	/**
+	 * Permet de tester plus facile
+	 * @param presence active ou desactive la presence d'un vehicule
+	 */
+	public void setPresence(CaptPresence presence) {
+		this.presence = presence;
 	}
 }

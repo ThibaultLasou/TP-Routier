@@ -55,10 +55,10 @@ public class Main
 
         // initialisation des capteurs
         capteurs = new ArrayList<Capteur>();
-        Capteur captPresence0 = new CaptPresence();
-        Capteur captPresence1 = new CaptPresence();
-        Capteur captVitesse2 = new CaptVitesse();
-        Capteur captVitesse3 = new CaptVitesse();
+        Capteur captPresence0 = new CaptPresence(null, null, 0, null);
+        Capteur captPresence1 = new CaptPresence(null, null, 0, null);
+        Capteur captVitesse2 = new CaptVitesse(null, null, 0, null);
+        Capteur captVitesse3 = new CaptVitesse(null, null, 0, null);
         capteurs.add(0, captPresence0);
         capteurs.add(1, captPresence1);
         capteurs.add(2, captVitesse2);

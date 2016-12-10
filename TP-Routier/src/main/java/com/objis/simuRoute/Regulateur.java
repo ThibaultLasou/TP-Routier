@@ -56,4 +56,8 @@ public class Regulateur
         sonAlgo.reguler(sesCapteurs, sesSemaphoreDynamique);
     }
 
+
+    public ArrayList<Capteur> getSesCapteurs() {
+        return sesCapteurs;
+    }
 }

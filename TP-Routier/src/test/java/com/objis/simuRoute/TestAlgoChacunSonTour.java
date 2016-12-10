@@ -31,7 +31,7 @@ public class TestAlgoChacunSonTour extends TestCase {
 
         // on test un algo qui ignore les capteurs
         ArrayList<Capteur> arrayCapt = new ArrayList<Capteur>();
-        arrayCapt.add(new CaptPresence());
+        arrayCapt.add(new CaptPresence(null, null, 0, null));
         Regulateur regulateur = new Regulateur(arrayCapt, arraySem, algoChacunSonTour);
 
         for(int i = 0; i < COMPTEUR_TEST; i++){
@@ -50,7 +50,7 @@ public class TestAlgoChacunSonTour extends TestCase {
 
         // on test un algo qui ignore les capteurs
         ArrayList<Capteur> arrayCapt = new ArrayList<Capteur>();
-        arrayCapt.add(new CaptPresence());
+        arrayCapt.add(new CaptPresence(null, null, 0, null));
         Regulateur regulateur = new Regulateur(arrayCapt, arraySem, algoChacunSonTour);
 
         for(int i = 0; i < COMPTEUR_TEST; i++){
@@ -69,7 +69,7 @@ public class TestAlgoChacunSonTour extends TestCase {
 
         // on test un algo qui ignore les capteurs donc on garde cette liste de capteur pour les deux algos
         ArrayList<Capteur> arrayCapt = new ArrayList<Capteur>();
-        arrayCapt.add(new CaptPresence());
+        arrayCapt.add(new CaptPresence(null, null, 0, null));
 
         // deuxieme algo pour la deuxieme liste de semaphores dynamiques
         ArrayList<SemaphoreDynamique> arraySem1 = new ArrayList<SemaphoreDynamique>();

@@ -5,8 +5,12 @@ package com.objis.simuRoute;
  */
 public class CaptPresence extends Capteur
 {
-	boolean presence; 
-	
+	boolean presence;
+
+	public CaptPresence(Segment sonEmplacement, Regulateur sonRegulateur, int position, EnumSens sens) {
+		super(sonEmplacement, sonRegulateur, position, sens);
+	}
+
 	/*l'attribut presence est à "vrai" s'il y a une voiture pendant l’unité de temps courante, "faux" sinon*/
 	@Override
 	public Boolean getMesure()
@@ -24,4 +28,12 @@ public class CaptPresence extends Capteur
     public boolean isPresence() {
         return presence;
     }
+
+	/**
+	 * Permet de tester plus facile
+	 * @param presence active ou desactive la presence d'un vehicule
+	 */
+	public void setPresence(boolean presence) {
+		this.presence = presence;
+	}
 }

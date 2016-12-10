@@ -13,6 +13,8 @@ import java.util.LinkedList;
  * Le principe de cet algorithme est que chaque semaphore dynamiques est traite en fonction de son capteur associe.
  * Cad que lorsque le capteur detecte la presence d'un vehicule, le semaphore associe s'ajoute a la file
  * A chaque tour on traite le premier element de la file et quand on a termine on le retire de la file
+ * On part du principe que tous les capteurs de la liste ont une correspondance avec un semaphore de la liste des semaphores
+ * De toute facon, on teste ici quand meme si c'est le cas
  * @author Patrice Camousseigt
  */
 public class AlgoDectectionPresenceFIFO implements Algo {
@@ -130,6 +132,22 @@ public class AlgoDectectionPresenceFIFO implements Algo {
             return TEMPS_INTERDICTION;
         }
         return REINITIALISATION;
+    }
+
+    public LinkedList<Pair<SemaphoreDynamique, Integer>> getSemDynFile() {
+        return semDynFile;
+    }
+
+    public int getTEMPS_AUTORISATION() {
+        return TEMPS_AUTORISATION;
+    }
+
+    public int getTEMPS_ATTENTION() {
+        return TEMPS_ATTENTION;
+    }
+
+    public int getTEMPS_INTERDICTION() {
+        return TEMPS_INTERDICTION;
     }
 
     @Override

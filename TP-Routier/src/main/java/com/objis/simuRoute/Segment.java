@@ -48,4 +48,8 @@ public class Segment extends Route
 	public Semaphore[] getSaSignalisation() {
 		return saSignalisation;
 	}
+
+    public void setSaSignalisation(Semaphore[] saSignalisation) {
+        this.saSignalisation = saSignalisation;
+    }
 }

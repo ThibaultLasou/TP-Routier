@@ -13,8 +13,15 @@ public abstract class Capteur
 	Regulateur sonRegulateur;
 	int position;
 	EnumSens sens;
-	
-	abstract void mesurer();
+
+    public Capteur(Segment sonEmplacement, Regulateur sonRegulateur, int position, EnumSens sens) {
+        this.sonEmplacement = sonEmplacement;
+        this.sonRegulateur = sonRegulateur;
+        this.position = position;
+        this.sens = sens;
+    }
+
+    abstract void mesurer();
 	
 	public abstract Object getMesure();
 

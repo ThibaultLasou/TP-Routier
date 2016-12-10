@@ -88,4 +88,8 @@ public class AlgoChacunSonTour implements Algo {
     public int getIndiceSemaphoreCourant() {
         return indiceSemaphoreCourant;
     }
+
+    public static int getREINITIALISATION() {
+        return REINITIALISATION;
+    }
 }
