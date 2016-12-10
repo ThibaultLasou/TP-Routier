@@ -4,7 +4,7 @@ public enum EnumSens
 {
 	NEGATIF(0, -1), 
 	POSITIF(1, 1);
-	
+
 	int ind;
 	int direction;
 	

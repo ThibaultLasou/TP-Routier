@@ -5,9 +5,11 @@ package com.objis.simuRoute;
  */
 public class JonctionBarriere extends Jonction
 {
-    @Override
-    Segment segSuivant(Vehicule v)
-    {
-        return null; //On retourne null pour signaler que la voiture est arrivée à une barrière et doit disparaître
-    }
+
+	@Override
+	public Segment segSuivant(Vehicule v)
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

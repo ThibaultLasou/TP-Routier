@@ -2,8 +2,8 @@ package com.objis.simuRoute;
 
 public class Segment extends Route
 {
-	Jonction[] sesExtremites;
-	Semaphore[] saSignalisation;
+	private Jonction[] sesExtremites;
+	private Semaphore[] saSignalisation;
 	
 	public Segment(int l) 
 	{
@@ -16,15 +16,27 @@ public class Segment extends Route
 	{
 		return this.sesVehicules.get(s.ind).getFirst();	
 	}
+	
+	public EnumSens getSensEntrée(Route r) throws ErreurModeleException
+	{
+		for(EnumSens sens : EnumSens.values())
+		{
+			if(sesExtremites[sens.ind]==r)
+			{
+				return sens.sensInverse();
+			}
+		}
+		throw new ErreurModeleException(r.toString() +"n'est pas adjacente à" +this.toString());
+	}
 
 	@Override
-	Route segSuivant(Vehicule v) 
+	public Route segSuivant(Vehicule v) 
 	{
 		return sesExtremites[v.getSens().ind];
 	}
 
 	@Override
-	void finRoute(Vehicule v) 
+	public void finRoute(Vehicule v) 
 	{
 		this.saSignalisation[v.getSens().ind].comportement();
 	}

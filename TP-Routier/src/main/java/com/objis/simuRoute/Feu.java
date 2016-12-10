@@ -37,7 +37,7 @@ public abstract class Feu extends SemaphoreDynamique
 				this.sonEmplacement.voitureEnTete(this.sens).arreter();
 				break;
             case AUTORISATION:
-				this.sonEmplacement.voitureEnTete(this.sens).avancer();
+				this.sonEmplacement.voitureEnTete(this.sens).accelerer();
 				break;
 			default: // Si un probleme, par securite, la voiture s'arrete
 				this.sonEmplacement.voitureEnTete(this.sens).arreter();

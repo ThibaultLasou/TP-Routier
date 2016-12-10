@@ -7,38 +7,41 @@ import java.util.ArrayList;
  */
 public abstract class Jonction extends Route 
 {
-	static int Longueur = 1;
-	ArrayList<Segment> sesAcces;
-	
+	private static int Longueur = 1;
+	protected ArrayList<Segment> sesAcces;
+
 	public Jonction() 
 	{
 		super(Longueur);
 	}
-	
+
 	@Override
-	void finRoute(Vehicule v)
+	public void finRoute(Vehicule v)
 	{
-		int i = sesAcces.indexOf(v.etapeSuiv);
 		EnumSens nextSens;
-		if(sesAcces.get(i).sesExtremites[0] == this) // change le sens pour entrer sur la prochaine route
-		{
-			nextSens = EnumSens.POSITIF;
-		}
-		else
-		{
-			nextSens = EnumSens.NEGATIF;
-		}
-		if(nextSens != v.getSens())
-		{
-			if(estLibre(nextSens))
+		try {
+			nextSens = v.etapeSuiv.getSensEntrée(this);
+			if(nextSens != v.getSens())
 			{
-				this.sesVehicules.get(v.getSens().ind).poll();
-				this.sesVehicules.get(nextSens.ind).offerLast(v);
-				v.setSens(nextSens);
+				if(estLibre(nextSens))
+				{
+					this.sesVehicules.get(v.getSens().ind).poll();
+					this.sesVehicules.get(nextSens.ind).offerLast(v);
+					v.setSens(nextSens);
+				}
 			}
+		} catch (ErreurModeleException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
-	@Override
-	abstract Segment segSuivant(Vehicule v);
+
+	public abstract Segment segSuivant(Vehicule v) throws ErreurModeleException;
+	
+	public EnumSens getSensEntrée(Route r) throws ErreurModeleException
+	{
+			return r.getSensEntrée(this).sensInverse();
+	}
 }
