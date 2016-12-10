@@ -25,8 +25,12 @@ public class JonctionSimple extends Jonction
 
 	@Override
 	public String toString() {
-		return "JonctionSimple [sesAcces=" + sesAcces + ", sesVehicules="
-				+ sesVehicules + "]";
+		String retour="";
+		for(int i=0;i<sesAcces.size();i++)
+		{
+			retour = retour+sesAcces.get(i).getNomSegment();
+		}
+		return "Jonction simple sur : "+retour;
 	};
 	
 	

@@ -36,6 +36,6 @@ public class FeuBiCol extends Feu
 
     @Override
     public String toString() {
-        return "[FeuBiCol] est " + this.semaphoreEtatCourant.getEnumColor().toString();
+        return "Le feu BiColore sur la :"+ sonEmplacement.getNomSegment()+" (sens "+sens+") est " + this.semaphoreEtatCourant.getEnumColor().toString();
     }
 }

@@ -7,10 +7,10 @@ public class Main
     // securite nombre de tours
     private static final int NB_TOUR = 10;
 
-    private static final int LONGUEUR_SEGMENT_0 = 1;
-    private static final int LONGUEUR_SEGMENT_1 = 1;
-    private static final int LONGUEUR_SEGMENT_2 = 1;
-    private static final int LONGUEUR_SEGMENT_3 = 1;
+    private static final int LONGUEUR_SEGMENT_0 = 2;
+    private static final int LONGUEUR_SEGMENT_1 = 2;
+    private static final int LONGUEUR_SEGMENT_2 = 4;
+    private static final int LONGUEUR_SEGMENT_3 = 3;
 
     private static ArrayList<Segment> segments; // list de segments
     private static ArrayList<Semaphore> semaphores; // list de semaphores
@@ -67,11 +67,59 @@ public class Main
         Jonction jonctionB2 = new JonctionBarriere();
         jonctionB2.sesAcces.add(0,segment3);
         jonctions.add(1,jonctionB2);
+        // Affichage de la jonction
+        System.out.println(jonctions.get(1).toString()); 
+        
+        Jonction jonctionS1 = new JonctionSimple();
+        jonctionS1.sesAcces.add(0,segment2);
+        jonctions.add(2,jonctionS1);
+        // Affichage de la jonction
+        System.out.println(jonctions.get(2).toString()); 
+        
+        Jonction jonctionC1 = new JonctionComplexe();
+        jonctionC1.sesAcces.add(0,segment0);
+        jonctionC1.sesAcces.add(1,segment1);
+        jonctionC1.sesAcces.add(2,segment2);
+        jonctions.add(3,jonctionC1);
+        // Affichage de la jonction
+        System.out.println(jonctions.get(3).toString()); 
+        
+        Jonction jonctionC2 = new JonctionComplexe();
+        jonctionC2.sesAcces.add(0,segment2);
+        jonctionC2.sesAcces.add(1,segment3);
+        jonctions.add(4,jonctionC2);
+        // Affichage de la jonction
+        System.out.println(jonctions.get(4).toString()); 
         
         
         // initialisation des semaphores
         semaphores = new ArrayList<Semaphore>();
-
+        FeuBiCol biColore1 = new FeuBiCol(EnumSens.POSITIF,segment0 );
+        semaphores.add(0,biColore1);
+        // Affichage de la semaphore
+        System.out.println(semaphores.get(0).toString()); 
+        
+        FeuBiCol biColore2 = new FeuBiCol(EnumSens.NEGATIF,segment1 );
+        semaphores.add(1,biColore2);
+        // Affichage de la semaphore
+        System.out.println(semaphores.get(1).toString()); 
+        
+        FeuBiCol biColore3 = new FeuBiCol(EnumSens.NEGATIF,segment2 );
+        semaphores.add(2,biColore3);
+        // Affichage de la semaphore
+        System.out.println(semaphores.get(2).toString()); 
+        
+        Feu triColor1 = new FeuTriCol(EnumSens.POSITIF, segment2);
+        semaphores.add(3,triColor1);
+        // Affichage de la semaphore
+        System.out.println(semaphores.get(3).toString()); 
+        
+        Feu triColor2 = new FeuTriCol(EnumSens.POSITIF, segment3);
+        semaphores.add(4,triColor2);
+        // Affichage de la semaphore
+        System.out.println(semaphores.get(4).toString()); 
+        
+        
         // initialisation des capteurs
         capteurs = new ArrayList<Capteur>();
         Capteur captPresence0 = new CaptPresence(null, null, 0, null);

@@ -2,7 +2,7 @@ package com.objis.simuRoute;
 import java.util.Random;
 
 /**
- * @author margauxdebure
+ * 
  */
 public class JonctionComplexe extends Jonction {
     @Override
@@ -23,4 +23,16 @@ public class JonctionComplexe extends Jonction {
 
         return sesAcces.get(indice);
     }
+
+	@Override
+	public String toString() {
+		String retour="";
+		for(int i=0;i<sesAcces.size();i++)
+		{
+			retour = retour+sesAcces.get(i).getNomSegment()+", ";
+		}
+		retour = retour.substring(0, retour.length()-2); // pour supprimer la dernière virgule de la chaine de caracteres.
+		
+		return "Jonction Complexe sur : "+retour;
+	};
 }
