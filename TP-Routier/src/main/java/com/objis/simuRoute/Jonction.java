@@ -1,6 +1,7 @@
 package com.objis.simuRoute;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * @author margauxdebure
@@ -13,6 +14,7 @@ public abstract class Jonction extends Route
 	public Jonction() 
 	{
 		super(Longueur);
+		sesAcces = new ArrayList<Segment>();
 	}
 
 	@Override

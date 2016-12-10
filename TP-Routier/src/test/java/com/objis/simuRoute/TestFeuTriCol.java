@@ -10,7 +10,7 @@ public class TestFeuTriCol extends TestCase {
 
 
     public void testChangement(){
-        Feu feu = new FeuTriCol(EnumSens.POSITIF, new Segment(1));
+        Feu feu = new FeuTriCol(EnumSens.POSITIF, new Segment(1,"route N"));
         assertEquals(feu.semaphoreEtatCourant.getEnumColor(), EnumColor.ROUGE);
         assertEquals(feu.semaphoreEtatCourant, EnumSemaphoreEtatCourant.INTERDICTION);
         feu.changement();
@@ -26,18 +26,18 @@ public class TestFeuTriCol extends TestCase {
     }
 
     public void testReinitialisation(){
-        Feu feu0 = new FeuTriCol(EnumSens.POSITIF, new Segment(1));
+        Feu feu0 = new FeuTriCol(EnumSens.POSITIF, new Segment(1,"route N"));
         feu0.changement();
         feu0.reinitialisation();
         assertEquals(feu0.semaphoreEtatCourant.getEnumColor(), EnumColor.ROUGE);
         assertEquals(feu0.semaphoreEtatCourant, EnumSemaphoreEtatCourant.INTERDICTION);
-        Feu feu1 = new FeuTriCol(EnumSens.POSITIF, new Segment(1));
+        Feu feu1 = new FeuTriCol(EnumSens.POSITIF, new Segment(1,"route N"));
         feu0.changement();
         feu0.changement();
         feu1.reinitialisation();
         assertEquals(feu1.semaphoreEtatCourant.getEnumColor(), EnumColor.ROUGE);
         assertEquals(feu1.semaphoreEtatCourant, EnumSemaphoreEtatCourant.INTERDICTION);
-        Feu feu2 = new FeuTriCol(EnumSens.POSITIF, new Segment(1));
+        Feu feu2 = new FeuTriCol(EnumSens.POSITIF, new Segment(1,"route N"));
         feu2.changement();
         feu2.changement();
         feu2.changement();

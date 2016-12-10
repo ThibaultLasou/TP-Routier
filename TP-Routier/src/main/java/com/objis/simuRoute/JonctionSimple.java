@@ -20,6 +20,14 @@ public class JonctionSimple extends Jonction
 				throw new ErreurModeleException(this.toString() + ": Erreur segSuivant");
 			}
 		}
-		return new Segment(1); // a modifier
+		return new Segment(1,"route N"); // a modifier
+	}
+
+	@Override
+	public String toString() {
+		return "JonctionSimple [sesAcces=" + sesAcces + ", sesVehicules="
+				+ sesVehicules + "]";
 	};
+	
+	
 }

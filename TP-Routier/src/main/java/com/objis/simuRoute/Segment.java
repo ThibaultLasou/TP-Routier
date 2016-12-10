@@ -4,12 +4,22 @@ public class Segment extends Route
 {
 	private Jonction[] sesExtremites;
 	private Semaphore[] saSignalisation;
+	private String nomSegment;
 	
-	public Segment(int l) 
+	public Segment(int l,String nom) 
 	{
 		super(l);
 		sesExtremites = new Jonction[2];
 		saSignalisation = new Semaphore[2];
+		nomSegment = nom;
+	}
+
+	public String getNomSegment() {
+		return nomSegment;
+	}
+
+	public void setNomSegment(String nomSegment) {
+		this.nomSegment = nomSegment;
 	}
 
 	Vehicule voitureEnTete(EnumSens s)

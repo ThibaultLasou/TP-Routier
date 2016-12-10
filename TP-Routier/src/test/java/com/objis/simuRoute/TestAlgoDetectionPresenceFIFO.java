@@ -17,9 +17,9 @@ public class TestAlgoDetectionPresenceFIFO extends TestCase {
     private Regulateur regulateur;
 
     public void testAjoutFile(){
-        Segment segment0 = new Segment(1);
-        Segment segment1 = new Segment(1);
-        Segment segment2 = new Segment(1);
+        Segment segment0 = new Segment(1,"route N");
+        Segment segment1 = new Segment(1,"route N");
+        Segment segment2 = new Segment(1,"route N");
 
         ArrayList<SemaphoreDynamique> sems = new ArrayList<SemaphoreDynamique>();
         SemaphoreDynamique semaphoreDynamique0 = new FeuBiCol(EnumSens.POSITIF, segment0);

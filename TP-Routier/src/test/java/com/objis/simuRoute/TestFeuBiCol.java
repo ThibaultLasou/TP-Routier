@@ -9,20 +9,20 @@ import junit.framework.TestCase;
 public class TestFeuBiCol extends TestCase {
 
     private FeuBiCol testChangementRouge(){
-        FeuBiCol feu = new FeuBiCol(EnumSens.POSITIF, new Segment(1));
+        FeuBiCol feu = new FeuBiCol(EnumSens.POSITIF, new Segment(1,"route N"));
         feu.changement();
         return feu;
     }
 
     private FeuBiCol testChangementVert(){
-        FeuBiCol feu = new FeuBiCol(EnumSens.POSITIF, new Segment(1));
+        FeuBiCol feu = new FeuBiCol(EnumSens.POSITIF, new Segment(1,"route N"));
         feu.changement();
         feu.changement();
         return feu;
     }
 
     private FeuBiCol testChangementRouge2(){
-        FeuBiCol feu = new FeuBiCol(EnumSens.POSITIF, new Segment(1));
+        FeuBiCol feu = new FeuBiCol(EnumSens.POSITIF, new Segment(1,"route N"));
         feu.changement();
         feu.changement();
         feu.changement();
@@ -42,12 +42,12 @@ public class TestFeuBiCol extends TestCase {
     }
 
     public void testReinitialisation(){
-        Feu feu0 = new FeuTriCol(EnumSens.POSITIF, new Segment(1));
+        Feu feu0 = new FeuTriCol(EnumSens.POSITIF, new Segment(1,"route N"));
         feu0.changement();
         feu0.reinitialisation();
         assertEquals(feu0.semaphoreEtatCourant.getEnumColor(), EnumColor.ROUGE);
         assertEquals(feu0.semaphoreEtatCourant, EnumSemaphoreEtatCourant.INTERDICTION);
-        Feu feu1 = new FeuTriCol(EnumSens.POSITIF, new Segment(1));
+        Feu feu1 = new FeuTriCol(EnumSens.POSITIF, new Segment(1,"route N"));
         feu0.changement();
         feu0.changement();
         feu1.reinitialisation();

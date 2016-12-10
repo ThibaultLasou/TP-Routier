@@ -17,7 +17,8 @@ public class Main
     private static ArrayList<Capteur> capteurs; // list de capteurs
     private static ArrayList<Regulateur> regulateurs; // list de regulateurs
     private static ArrayList<Vehicule> vehicules; // list de vehicules
-
+    private static ArrayList<Jonction> jonctions; // list de jonctions
+    
     private static void actionVehicules() throws ErreurModeleException{
         for(Vehicule vehicule : vehicules){
             vehicule.avancer();
@@ -41,15 +42,33 @@ public class Main
     {
         // initialisation des segments
         segments = new ArrayList<Segment>();
-        Segment segment0 = new Segment(LONGUEUR_SEGMENT_0);
-        Segment segment1 = new Segment(LONGUEUR_SEGMENT_1);
-        Segment segment2 = new Segment(LONGUEUR_SEGMENT_2);
-        Segment segment3 = new Segment(LONGUEUR_SEGMENT_3);
+        Segment segment0 = new Segment(LONGUEUR_SEGMENT_0,"route N1");
+        Segment segment1 = new Segment(LONGUEUR_SEGMENT_1,"route N2");
+        Segment segment2 = new Segment(LONGUEUR_SEGMENT_2,"route N3");
+        Segment segment3 = new Segment(LONGUEUR_SEGMENT_3,"route N4");
         segments.add(0, segment0);
         segments.add(1, segment1);
         segments.add(2, segment2);
         segments.add(3, segment3);
-
+        System.out.println("Voici le réseau routier : ");
+        for(int i =0;i<segments.size();i++)
+        {
+        	System.out.println(segments.get(i).getNomSegment()+" de longueur "+segments.get(i).getLongueur());
+        }
+        // initialisation des jonctions
+        jonctions = new ArrayList<Jonction>();
+        
+        Jonction jonctionB1 = new JonctionBarriere();
+        jonctionB1.sesAcces.add(0,segment0);
+        jonctions.add(0,jonctionB1);
+      // Affichage de la jonction
+        System.out.println(jonctions.get(0).toString()); 
+        
+        Jonction jonctionB2 = new JonctionBarriere();
+        jonctionB2.sesAcces.add(0,segment3);
+        jonctions.add(1,jonctionB2);
+        
+        
         // initialisation des semaphores
         semaphores = new ArrayList<Semaphore>();
 

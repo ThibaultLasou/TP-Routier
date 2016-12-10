@@ -146,4 +146,12 @@ public abstract class Route
 	public abstract Route segSuivant(Vehicule v) throws ErreurModeleException;
 	
 	public abstract EnumSens getSensEntrée(Route r) throws ErreurModeleException;
+
+	public int getLongueur() {
+		return longueur;
+	}
+
+	public void setLongueur(int longueur) {
+		this.longueur = longueur;
+	}
 }

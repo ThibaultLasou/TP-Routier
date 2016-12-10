@@ -22,9 +22,9 @@ public class TestAlgoChacunSonTour extends TestCase {
     public void testAlgoChacunSonTour() {
         ArrayList<SemaphoreDynamique> arraySem = new ArrayList<SemaphoreDynamique>();
         // on cree 3 semaphores dynamiques avec des sens et segments au hasard
-        SemaphoreDynamique sem0 = new FeuBiCol(EnumSens.POSITIF, new Segment(1));
-        SemaphoreDynamique sem1 = new FeuTriCol(EnumSens.POSITIF, new Segment(1));
-        SemaphoreDynamique sem2 = new FeuTriCol(EnumSens.POSITIF, new Segment(1));
+        SemaphoreDynamique sem0 = new FeuBiCol(EnumSens.POSITIF, new Segment(1,"route N1"));
+        SemaphoreDynamique sem1 = new FeuTriCol(EnumSens.POSITIF, new Segment(1,"route N2"));
+        SemaphoreDynamique sem2 = new FeuTriCol(EnumSens.POSITIF, new Segment(1,"route N3"));
         arraySem.add(sem0);
         arraySem.add(sem1);
         arraySem.add(sem2);
@@ -45,7 +45,7 @@ public class TestAlgoChacunSonTour extends TestCase {
     public void testAlgoUnSeulSemaphoreDynamique() {
         ArrayList<SemaphoreDynamique> arraySem = new ArrayList<SemaphoreDynamique>();
         // on cree 1 seul semaphore dynamique avec un sens et un segment au hasard
-        SemaphoreDynamique sem0 = new FeuBiCol(EnumSens.POSITIF, new Segment(1));
+        SemaphoreDynamique sem0 = new FeuBiCol(EnumSens.POSITIF, new Segment(1,"route N4"));
         arraySem.add(sem0);
 
         // on test un algo qui ignore les capteurs
@@ -64,7 +64,7 @@ public class TestAlgoChacunSonTour extends TestCase {
     public void testDeuxAlgoChacunSonTour() {
         // 1ere liste de semaphores dynamiques pour le premier algo
         ArrayList<SemaphoreDynamique> arraySem0 = new ArrayList<SemaphoreDynamique>();
-        SemaphoreDynamique sem0 = new FeuBiCol(EnumSens.POSITIF, new Segment(1));
+        SemaphoreDynamique sem0 = new FeuBiCol(EnumSens.POSITIF, new Segment(1,"route N5"));
         arraySem0.add(sem0);
 
         // on test un algo qui ignore les capteurs donc on garde cette liste de capteur pour les deux algos
@@ -73,7 +73,7 @@ public class TestAlgoChacunSonTour extends TestCase {
 
         // deuxieme algo pour la deuxieme liste de semaphores dynamiques
         ArrayList<SemaphoreDynamique> arraySem1 = new ArrayList<SemaphoreDynamique>();
-        SemaphoreDynamique sem1 = new FeuBiCol(EnumSens.POSITIF, new Segment(1));
+        SemaphoreDynamique sem1 = new FeuBiCol(EnumSens.POSITIF, new Segment(1,"route N6"));
         arraySem1.add(sem1);
 
         Regulateur regulateur0 = new Regulateur(arrayCapt, arraySem0, algoChacunSonTour);
