@@ -51,4 +51,9 @@ public class CaptVitesse extends Capteur
 	public void setPresence(CaptPresence presence) {
 		this.presence = presence;
 	}
+	
+	@Override
+	public String toString() {
+		return "Capteur de vitesse sur : "+ sonEmplacement.getNomSegment()+" (sens "+sens+")  ";
+	}
 }

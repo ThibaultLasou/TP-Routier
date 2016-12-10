@@ -34,6 +34,6 @@ public class Stop extends Panneau
 
 	@Override
 	public String toString() {
-		return "Panneau Stop sur : "+ sonEmplacement.getNomSegment()+" (sens "+sens+") est ";
+		return "Panneau Stop sur : "+ sonEmplacement.getNomSegment()+" (sens "+sens+") ";
 	}
 }

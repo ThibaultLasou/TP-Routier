@@ -122,14 +122,19 @@ public class Main
         
         // initialisation des capteurs
         capteurs = new ArrayList<Capteur>();
-        Capteur captPresence0 = new CaptPresence(null, null, 0, null);
-        Capteur captPresence1 = new CaptPresence(null, null, 0, null);
-        Capteur captVitesse2 = new CaptVitesse(null, null, 0, null);
-        Capteur captVitesse3 = new CaptVitesse(null, null, 0, null);
+        Capteur captPresence0 = new CaptPresence(segment0, null, LONGUEUR_SEGMENT_0, EnumSens.POSITIF);
+        Capteur captPresence1 = new CaptPresence(segment1, null, LONGUEUR_SEGMENT_1, EnumSens.POSITIF);
+        Capteur captVitesse2 = new CaptVitesse(segment2, null, LONGUEUR_SEGMENT_2, EnumSens.POSITIF);
+        Capteur captVitesse3 = new CaptVitesse(segment3, null, LONGUEUR_SEGMENT_3, EnumSens.POSITIF);
         capteurs.add(0, captPresence0);
         capteurs.add(1, captPresence1);
         capteurs.add(2, captVitesse2);
         capteurs.add(3, captVitesse3);
+        //Affichage des capteurs
+        for(int i=0;i<capteurs.size();i++)
+        {
+        	System.out.println(capteurs.get(i).toString());
+        }
 
         // initialisation des regulateurs
         regulateurs = new ArrayList<Regulateur>();
