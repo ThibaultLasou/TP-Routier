@@ -3,7 +3,7 @@ package com.objis.simuRoute;
 public class JonctionSimple extends Jonction 
 {
 	@Override
-	Segment segSuivant(Vehicule v) //throws WTFException
+	public Segment segSuivant(Vehicule v) throws ErreurModeleException //throws WTFException
 	{
 		for(Segment s : sesAcces)
 		{
@@ -13,8 +13,7 @@ public class JonctionSimple extends Jonction
 			}
 			else
 			{
-				//TODO trouver un meilleur nom d'exception
-				//throw new WTFException()
+				throw new ErreurModeleException(this.toString() + ": Erreur segSuivant");
 			}
 		}
 		return new Segment(1); // a modifier

@@ -18,7 +18,7 @@ public class Main
     private static ArrayList<Regulateur> regulateurs; // list de regulateurs
     private static ArrayList<Vehicule> vehicules; // list de vehicules
 
-    private static void actionVehicules(){
+    private static void actionVehicules() throws ErreurModeleException{
         for(Vehicule vehicule : vehicules){
             vehicule.avancer();
         }
@@ -76,8 +76,14 @@ public class Main
         for(int compteur = 0; compteur < NB_TOUR; compteur++){
 
             // mise a jour vehicules
-            //actionVehicules();
-
+            try{
+            	actionVehicules();
+            }
+            catch(ErreurModeleException e)
+            {
+            	System.out.println("Réseau incohérent : " + e.getMessage());
+            	return;
+            }
             // mise a jour capteurs
             //misAJourCapteurs();
 

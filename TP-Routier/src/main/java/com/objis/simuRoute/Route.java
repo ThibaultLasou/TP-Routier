@@ -5,8 +5,8 @@ import java.util.LinkedList;
 
 public abstract class Route 
 {
-	int longueur;
-	ArrayList<LinkedList<Vehicule>> sesVehicules;
+	private int longueur;
+	protected ArrayList<LinkedList<Vehicule>> sesVehicules;
 	
 	public Route(int l)
 	{
@@ -16,7 +16,7 @@ public abstract class Route
 		sesVehicules.add(EnumSens.POSITIF.ind, new LinkedList<Vehicule>());
 	}
 
-	Vehicule getVehicule(int pos, EnumSens sens)
+	public Vehicule getVehicule(int pos, EnumSens sens)
 	{
 		for(Vehicule v : sesVehicules.get(sens.ind))
 		{
@@ -28,11 +28,10 @@ public abstract class Route
 		return null;
 	}
 
-	Vehicule getVehiculeDevant(int pos, EnumSens sens)
+	public Vehicule getVehiculeDevant(int pos, EnumSens sens)
 	{
 		Vehicule v = sesVehicules.get(sens.ind).getLast();
-		int i = sesVehicules.get(sens.ind).size();
-		for(i=i;i>0;i--)
+		for(int i=sesVehicules.get(sens.ind).size();i>0;i--)
 		{
 			if(v.getPosition()*sens.direction > pos*sens.direction)// pour gérer les deux sens
 			{
@@ -47,7 +46,7 @@ public abstract class Route
 	}
 
 	/* calcule si une voiture dépasse de cette route déborde sur r*/
-	int debordement(Route r)
+	public int debordement(Route r)
 	{
 		for(LinkedList<Vehicule> a : sesVehicules)
 		{
@@ -87,7 +86,7 @@ public abstract class Route
 	}
 	
 	/* indique si la position dans ce sens est libre */
-	boolean estLibre(EnumSens sens, int pos)
+	public boolean estLibre(EnumSens sens, int pos)
 	{
 		//voir si une voiture devant arrive pas jusque ici
 		if(getVehicule(pos, sens) == null)
@@ -105,7 +104,7 @@ public abstract class Route
 	}
 	
 	/* indique si l'extrémité entrante dans ce sens est libre */
-	boolean estLibre(EnumSens sens)
+	public boolean estLibre(EnumSens sens)
 	{
 		if(sens == EnumSens.POSITIF)
 		{
@@ -118,14 +117,14 @@ public abstract class Route
 	}
 	
 	/* indique si la position est une extrémité sortante */
-	boolean estFin(int pos, EnumSens sens)
+	public boolean estFin(int pos, EnumSens sens)
 	{
 		return (pos == 0 && sens == EnumSens.NEGATIF) || 
 				(pos == longueur-1 && sens == EnumSens.POSITIF);
 	}
 	
 	/* action à l'entrée d'une route */
-	void entreeRoute(Vehicule v)
+	public void entreeRoute(Vehicule v) throws ErreurModeleException
 	{
 		v.getSaRoute().sesVehicules.get(v.getSens().ind).pollFirst(); // enlève la voiture de sa route actuelle
 		this.sesVehicules.get(v.getSens().ind).addLast(v); // la met dans la nouvelle
@@ -142,7 +141,9 @@ public abstract class Route
 	}
 	
 	/* action à la sortie d'une route */
-	void finRoute(Vehicule v) {}
+	public void finRoute(Vehicule v) {}
 	
-	abstract Route segSuivant(Vehicule v);
+	public abstract Route segSuivant(Vehicule v) throws ErreurModeleException;
+	
+	public abstract EnumSens getSensEntrée(Route r) throws ErreurModeleException;
 }

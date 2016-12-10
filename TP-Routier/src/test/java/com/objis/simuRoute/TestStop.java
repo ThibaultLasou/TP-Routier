@@ -9,7 +9,12 @@ import junit.framework.TestCase;
 public class TestStop extends TestCase {
 	
     public void testComportement(){
-        Vehicule vehicule = new Vehicule(0, 0, null, 0, null);
+        try {
+			Vehicule vehicule = new Vehicule(0, 0, null, 0, null);
+		} catch (ErreurModeleException e) {
+			System.out.println("Réseau incohérent : " + e.getMessage());
+        	return;
+		}
     }
 
     /*
