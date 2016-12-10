@@ -31,4 +31,9 @@ public class Stop extends Panneau
             vehiculeEnTete.arreter();
         }
     }
+
+	@Override
+	public String toString() {
+		return "[Panneau Stop]";
+	}
 }

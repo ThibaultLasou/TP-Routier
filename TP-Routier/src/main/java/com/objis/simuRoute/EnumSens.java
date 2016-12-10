@@ -13,4 +13,12 @@ public enum EnumSens
 		this.ind = i;
 		this.direction = d;
 	}
+
+	public int getInd() {
+		return ind;
+	}
+
+	public int getDirection() {
+		return direction;
+	}
 }

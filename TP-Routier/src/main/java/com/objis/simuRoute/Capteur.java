@@ -16,5 +16,25 @@ public abstract class Capteur
 	
 	abstract void mesurer();
 	
-	abstract Object getMesure();
+	public abstract Object getMesure();
+
+	public abstract boolean isPresence();
+
+    public Segment getSonEmplacement() {
+        return sonEmplacement;
+    }
+
+    public Regulateur getSonRegulateur() {
+        return sonRegulateur;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public EnumSens getSens() {
+        return sens;
+    }
+
+
 }

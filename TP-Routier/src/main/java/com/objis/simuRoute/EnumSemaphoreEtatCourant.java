@@ -10,17 +10,28 @@ import static com.objis.simuRoute.EnumColor.VERT;
  */
 public enum EnumSemaphoreEtatCourant {
 
-    INTERDICTION(ROUGE),
-    ATTENTION(ORANGE),
-    AUTORISATION(VERT);
+    INTERDICTION("INTERDICTION", ROUGE),
+    ATTENTION("ATTENTION", ORANGE),
+    AUTORISATION("AUTORISATION", VERT);
 
+    private String name;
     private EnumColor enumColor;
 
-    EnumSemaphoreEtatCourant(EnumColor color) {
-        enumColor = color;
+    EnumSemaphoreEtatCourant(String name, EnumColor enumColor) {
+        this.name = name;
+        this.enumColor = enumColor;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public EnumColor getEnumColor() {
         return enumColor;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

@@ -7,7 +7,7 @@ public class Vehicule
 	int vitesse_max;
 	EtatVehicule sonEtat;
 	
-	void avancer() // boolean
+	void avancer()// boolean
 	{
 		/* soit vitesse max définie par une sémaphore, soit max du vehicule*/
 		if(sonEtat.saRoute.estFin(getPosition(), getSens()))

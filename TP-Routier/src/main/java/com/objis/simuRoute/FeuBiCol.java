@@ -34,5 +34,8 @@ public class FeuBiCol extends Feu
         }
     }
 
-
+    @Override
+    public String toString() {
+        return "[FeuBiCol] est " + this.semaphoreEtatCourant.getEnumColor().toString();
+    }
 }

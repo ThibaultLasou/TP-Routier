@@ -34,13 +34,18 @@ public class Regulateur
      * @return la liste de paire de semaphore dynamique avec leurs compteurs initialises
      */
     private ArrayList<Pair<SemaphoreDynamique, Integer>> initialisation(ArrayList<SemaphoreDynamique> sesSemaphoreDynamique){
+
         ArrayList<Pair<SemaphoreDynamique, Integer>> arrayPair = new ArrayList<Pair<SemaphoreDynamique, Integer>>();
+
         for(SemaphoreDynamique semDyn : sesSemaphoreDynamique){
+
             semDyn.reinitialisation(); // on reinitialise toutes les semaphores dynamiques
-            Pair<SemaphoreDynamique, Integer> pair =
-                    new Pair<SemaphoreDynamique, Integer>(semDyn, INITIALISATION_COMPTEUR);
+
+            Pair<SemaphoreDynamique, Integer> pair = new Pair<SemaphoreDynamique, Integer>(semDyn, INITIALISATION_COMPTEUR);
+
             arrayPair.add(pair);
         }
+
         return arrayPair;
     }
 

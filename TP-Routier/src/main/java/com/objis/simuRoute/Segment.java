@@ -28,4 +28,12 @@ public class Segment extends Route
 	{
 		this.saSignalisation[v.getSens().ind].comportement();
 	}
+
+	public Jonction[] getSesExtremites() {
+		return sesExtremites;
+	}
+
+	public Semaphore[] getSaSignalisation() {
+		return saSignalisation;
+	}
 }

@@ -26,4 +26,15 @@ public abstract class Semaphore
      */
 	abstract void comportement();
 
+	public EnumSens getSens() {
+		return sens;
+	}
+
+	public Segment getSonEmplacement() {
+		return sonEmplacement;
+	}
+
+	public EnumSemaphoreEtatCourant getSemaphoreEtatCourant() {
+		return semaphoreEtatCourant;
+	}
 }

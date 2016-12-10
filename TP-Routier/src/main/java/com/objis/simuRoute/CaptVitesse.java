@@ -16,7 +16,7 @@ public class CaptVitesse extends Capteur
 	}
 	
 	@Override
-	Integer getMesure()
+	public Integer getMesure()
 	{
 		if(presence.getMesure())
 		{
@@ -28,6 +28,8 @@ public class CaptVitesse extends Capteur
 			return -1;
 		}
 	}
+
+	@Override
 	void mesurer()
 	{
 		presence.mesurer(); // initialise le capteur de présence
@@ -35,5 +37,10 @@ public class CaptVitesse extends Capteur
 		{
 			vitesse = this.sonEmplacement.getVehicule(this.position, this.sens).getVitesse_inst();
 		}
+	}
+
+	@Override
+	public boolean isPresence() {
+		return presence.isPresence();
 	}
 }

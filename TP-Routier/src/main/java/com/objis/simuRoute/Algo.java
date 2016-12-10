@@ -15,5 +15,5 @@ public interface Algo
 	 * @param capts les capteurs utilises
 	 * @param sems les semaphores dynamiques utilises
 	 */
-	void reguler(ArrayList<Capteur> capts, ArrayList<Pair<SemaphoreDynamique, Integer>> sems);
+	void reguler(ArrayList<? extends Capteur> capts, ArrayList<Pair<SemaphoreDynamique, Integer>> sems);
 }

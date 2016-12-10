@@ -5,8 +5,18 @@ package com.objis.simuRoute;
  */
 public enum EnumColor 
 {
-	VERT,
-	ORANGE,
-	ROUGE;
+	VERT("VERT"),
+	ORANGE("ORANGE"),
+	ROUGE("ROUGE");
 
+	private String name;
+
+	EnumColor(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return name;
+	}
 }

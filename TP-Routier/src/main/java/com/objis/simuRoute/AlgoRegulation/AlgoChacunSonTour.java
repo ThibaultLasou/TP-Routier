@@ -20,23 +20,26 @@ public class AlgoChacunSonTour implements Algo {
     // temps d'attente pour chaque etat des semaphores dynamiques
     // pas d'attente particuliere pour l'interdiction car peu d'interet a ce qu'aucune voiture n'avance
     // si le cas devient interessant, pour des travaux par exemple, il suffit d'incrementer TEMPS_INTERDICTION
-    private static final int TEMPS_AUTORISATION = 1;
-    private static final int TEMPS_ATTENTION = 1;
-    private static final int TEMPS_INTERDICTION = 0;
+    private final int TEMPS_AUTORISATION = 1;
+    private final int TEMPS_ATTENTION = 1;
+    private final int TEMPS_INTERDICTION = 0;
 
     private static final int UNITE_DE_TEMPS = 1;
     private static final int REINITIALISATION = 0;
 
     // l'indice actuelle du semaphore sur lequelle l'algo est concentre
-    private int indiceSemaphoreCourant = 0;
+    private int indiceSemaphoreCourant;
 
+    public AlgoChacunSonTour() {
+        this.indiceSemaphoreCourant = 0;
+    }
 
     /**
      * Modifie l'etat des sempahores dynamiques en fonction des temps d'attente courant
      * @param capts les capteurs utilises
      * @param sems les semaphores dynamiques utilises
      */
-    public void reguler(ArrayList<Capteur> capts, ArrayList<Pair<SemaphoreDynamique, Integer>> sems) {
+    public void reguler(ArrayList<? extends Capteur> capts, ArrayList<Pair<SemaphoreDynamique, Integer>> sems) {
         Pair<SemaphoreDynamique, Integer> pair = sems.get(indiceSemaphoreCourant);
 
         if(pair.getValue() > 0){
@@ -65,7 +68,7 @@ public class AlgoChacunSonTour implements Algo {
      * @param sem le semaphore dynamique
      * @return le temps d'attente prevu par cet etat dans l'algo
      */
-    public static int tempsAttenteEtat(SemaphoreDynamique sem){
+    private int tempsAttenteEtat(SemaphoreDynamique sem){
         if(sem.etatCourantIsAttention()){
             return TEMPS_ATTENTION;
         }

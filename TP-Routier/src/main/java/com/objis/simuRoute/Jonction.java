@@ -2,6 +2,9 @@ package com.objis.simuRoute;
 
 import java.util.ArrayList;
 
+/**
+ * @author margauxdebure
+ */
 public abstract class Jonction extends Route 
 {
 	static int Longueur = 1;
@@ -25,6 +28,7 @@ public abstract class Jonction extends Route
 			v.setSens(EnumSens.NEGATIF);
 		}
 	}
-	
+
+	@Override
 	abstract Segment segSuivant(Vehicule v);
 }

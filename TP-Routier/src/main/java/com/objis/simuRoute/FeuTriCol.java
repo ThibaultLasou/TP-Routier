@@ -53,5 +53,8 @@ public class FeuTriCol extends Feu
         }
     }
 
-
+    @Override
+    public String toString() {
+        return "[FeuTriCol] est " + this.semaphoreEtatCourant.getEnumColor().toString();
+    }
 }

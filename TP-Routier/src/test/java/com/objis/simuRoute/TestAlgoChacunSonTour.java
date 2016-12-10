@@ -58,6 +58,34 @@ public class TestAlgoChacunSonTour extends TestCase {
         }
     }
 
+    /**
+     * Test sur un seul semaphore dynamique
+     */
+    public void testDeuxAlgoChacunSonTour() {
+        // 1ere liste de semaphores dynamiques pour le premier algo
+        ArrayList<SemaphoreDynamique> arraySem0 = new ArrayList<SemaphoreDynamique>();
+        SemaphoreDynamique sem0 = new FeuBiCol(EnumSens.POSITIF, new Segment(1));
+        arraySem0.add(sem0);
+
+        // on test un algo qui ignore les capteurs donc on garde cette liste de capteur pour les deux algos
+        ArrayList<Capteur> arrayCapt = new ArrayList<Capteur>();
+        arrayCapt.add(new CaptPresence());
+
+        // deuxieme algo pour la deuxieme liste de semaphores dynamiques
+        ArrayList<SemaphoreDynamique> arraySem1 = new ArrayList<SemaphoreDynamique>();
+        SemaphoreDynamique sem1 = new FeuBiCol(EnumSens.POSITIF, new Segment(1));
+        arraySem1.add(sem1);
+
+        Regulateur regulateur0 = new Regulateur(arrayCapt, arraySem0, algoChacunSonTour);
+        Regulateur regulateur1 = new Regulateur(arrayCapt, arraySem1, algoChacunSonTour);
+
+
+        for(int i = 0; i < COMPTEUR_TEST; i++){
+            testAlgoEtape(regulateur0);
+            testAlgoEtape(regulateur1);
+        }
+    }
+
 
     /**
      * Test qu'il n'y a pas d'autres semaphores dynamiques que celui actuellement utilise en etat d'autorisation
