@@ -102,9 +102,9 @@ public class TestAlgoChacunSonTour extends TestCase {
 
             // dans cet algo, tous les autres semaphores autre que celle en train detre traite doivent etre en etat INTERDICTION
             if(i != indiceSemaphoreCourant){
-                /*assertEquals(0, valeur_attente);
+                assertEquals(0, valeur_attente);
                 assertEquals(EnumSemaphoreEtatCourant.INTERDICTION,
-                        regulateur.sesSemaphoreDynamique.get(i).getKey().semaphoreEtatCourant);*/
+                        regulateur.sesSemaphoreDynamique.get(i).getKey().semaphoreEtatCourant);
 
             }
         }
