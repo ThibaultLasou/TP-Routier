@@ -1,7 +1,8 @@
 package com.objis.simuRoute;
 
-/**@author YKertous
+/**
  * Un capteur de présence signale le passage d’une voiture pendant l’unité de temps courante
+ * @author Yasmine Kertous
  */
 public class CaptPresence extends Capteur
 {

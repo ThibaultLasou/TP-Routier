@@ -1,7 +1,6 @@
 package com.objis.simuRoute;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 /**
  * @author margauxdebure
@@ -22,7 +21,7 @@ public abstract class Jonction extends Route
 	{
 		EnumSens nextSens;
 		try {
-			nextSens = v.etapeSuiv.getSensEntrée(this);
+			nextSens = v.getEtapeSuivante().getSensEntrée(this);
 			if(nextSens != v.getSens())
 			{
 				if(estLibre(nextSens))
@@ -32,7 +31,7 @@ public abstract class Jonction extends Route
 					v.setSens(nextSens);
 				}
 			}
-		} catch (ErreurModeleException e) 
+		} catch (ErreurModele e) 
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -40,9 +39,9 @@ public abstract class Jonction extends Route
 	}
 
 
-	public abstract Segment segSuivant(Vehicule v) throws ErreurModeleException;
+	public abstract Segment segSuivant(Vehicule v) throws ErreurModele;
 	
-	public EnumSens getSensEntrée(Route r) throws ErreurModeleException
+	public EnumSens getSensEntrée(Route r) throws ErreurModele
 	{
 			return r.getSensEntrée(this).sensInverse();
 	}

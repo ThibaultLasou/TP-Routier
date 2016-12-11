@@ -19,7 +19,7 @@ public class Main
     private static ArrayList<Vehicule> vehicules; // list de vehicules
     private static ArrayList<Jonction> jonctions; // list de jonctions
     
-    private static void actionVehicules() throws ErreurModeleException{
+    private static void actionVehicules() throws ErreurModele{
         for(Vehicule vehicule : vehicules){
             vehicule.avancer();
         }
@@ -53,7 +53,7 @@ public class Main
         System.out.println("Voici le réseau routier : ");
         for(int i =0;i<segments.size();i++)
         {
-        	System.out.println(segments.get(i).getNomSegment()+" de longueur "+segments.get(i).getLongueur());
+        	System.out.println(segments.get(i).toString());
         }
         // initialisation des jonctions
         jonctions = new ArrayList<Jonction>();
@@ -151,7 +151,7 @@ public class Main
             try{
             	actionVehicules();
             }
-            catch(ErreurModeleException e)
+            catch(ErreurModele e)
             {
             	System.out.println("Réseau incohérent : " + e.getMessage());
             	return;

@@ -5,7 +5,7 @@ import java.util.LinkedList;
 
 public abstract class Route 
 {
-	private int longueur;
+	protected int longueur;
 	protected ArrayList<LinkedList<Vehicule>> sesVehicules;
 	
 	public Route(int l)
@@ -53,7 +53,7 @@ public abstract class Route
 			Vehicule v = a.getLast();
 			if(v.getRoutePrec() == r)
 			{
-				int finVoiture = v.getPosition()+(v.longueur-1*v.getSens().direction);//trouve la position du dernier "bout" de la voiture
+				int finVoiture = v.getPosition()+(v.getLongueur()-1*v.getSens().direction);//trouve la position du dernier "bout" de la voiture
 				if(v.getSens() == EnumSens.POSITIF)
 				{
 					if(finVoiture < 0)
@@ -91,11 +91,12 @@ public abstract class Route
 		//voir si une voiture devant arrive pas jusque ici
 		if(getVehicule(pos, sens) == null)
 		{
-			Vehicule v = getVehiculeDevant(pos,sens);
-			if(v != null)
+			Vehicule v = getVehiculeDevant(pos, sens);
+			if(v != null) /* pas de voiture à pos */
 			{
-				if(v.getPosition() + (v.longueur*sens.direction) != pos)
+				if(v.getPosition() + (v.getLongueur()*sens.direction) != pos) /* pas de voiture sur ce segment débordant sur pos */
 				{
+					if(v.getEtapeSuivante().debordement(this)*v.getSens().sensInverse().direction + longueur * v.getSens().ind != pos)
 					return true;
 				}
 			}
@@ -124,7 +125,7 @@ public abstract class Route
 	}
 	
 	/* action à l'entrée d'une route */
-	public void entreeRoute(Vehicule v) throws ErreurModeleException
+	public void entreeRoute(Vehicule v) throws ErreurModele
 	{
 		v.getSaRoute().sesVehicules.get(v.getSens().ind).pollFirst(); // enlève la voiture de sa route actuelle
 		this.sesVehicules.get(v.getSens().ind).addLast(v); // la met dans la nouvelle
@@ -143,15 +144,7 @@ public abstract class Route
 	/* action à la sortie d'une route */
 	public void finRoute(Vehicule v) {}
 	
-	public abstract Route segSuivant(Vehicule v) throws ErreurModeleException;
+	public abstract Route segSuivant(Vehicule v) throws ErreurModele;
 	
-	public abstract EnumSens getSensEntrée(Route r) throws ErreurModeleException;
-
-	public int getLongueur() {
-		return longueur;
-	}
-
-	public void setLongueur(int longueur) {
-		this.longueur = longueur;
-	}
+	public abstract EnumSens getSensEntrée(Route r) throws ErreurModele;
 }
