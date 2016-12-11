@@ -18,7 +18,7 @@ import java.util.List;
  * De toute facon, on teste ici quand meme si c'est le cas
  * @author Patrice Camousseigt
  */
-public class AlgoDectectionPresenceFIFO implements Algo {
+public class AlgoDetectionPresenceFIFO implements Algo {
 
     // temps d'attente pour chaque etat des semaphores dynamiques
     // pas d'attente particuliere pour l'interdiction car peu d'interet a ce qu'aucune voiture n'avance
@@ -38,7 +38,7 @@ public class AlgoDectectionPresenceFIFO implements Algo {
     /**
      * Constructeur
      */
-    public AlgoDectectionPresenceFIFO() {
+    public AlgoDetectionPresenceFIFO() {
         this.semDynFile = new LinkedList<Pair<SemaphoreDynamique, Integer>>();
     }
 
@@ -153,7 +153,7 @@ public class AlgoDectectionPresenceFIFO implements Algo {
 
     @Override
     public String toString() {
-        return "AlgoDectectionPresenceFIFO{" +
+        return "AlgoDetectionPresenceFIFO{" +
                 "TEMPS_AUTORISATION=" + TEMPS_AUTORISATION +
                 ", TEMPS_ATTENTION=" + TEMPS_ATTENTION +
                 ", TEMPS_INTERDICTION=" + TEMPS_INTERDICTION +

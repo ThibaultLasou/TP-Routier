@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class TestAlgoChacunSonTour extends TestCase {
 
-    private final static boolean afficherTest = true;
+    private final static boolean afficherTest = false;
     private final static int COMPTEUR_TEST = 50;
 
     private AlgoChacunSonTour algoChacunSonTour = new AlgoChacunSonTour();

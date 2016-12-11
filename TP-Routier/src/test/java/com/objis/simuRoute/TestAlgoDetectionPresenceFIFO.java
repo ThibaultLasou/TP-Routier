@@ -1,6 +1,6 @@
 package com.objis.simuRoute;
 
-import com.objis.simuRoute.AlgoRegulation.AlgoDectectionPresenceFIFO;
+import com.objis.simuRoute.AlgoRegulation.AlgoDetectionPresenceFIFO;
 import javafx.util.Pair;
 import junit.framework.TestCase;
 
@@ -14,7 +14,7 @@ public class TestAlgoDetectionPresenceFIFO extends TestCase {
     private final static boolean afficherTest = false;
     private final static int COMPTEUR_TEST = 4;
 
-    private AlgoDectectionPresenceFIFO algoDectectionPresenceFIFO = new AlgoDectectionPresenceFIFO();
+    private AlgoDetectionPresenceFIFO algoDetectionPresenceFIFO = new AlgoDetectionPresenceFIFO();
     private Regulateur regulateur;
 
     public void testAjoutFile(){
@@ -52,41 +52,41 @@ public class TestAlgoDetectionPresenceFIFO extends TestCase {
         capts.add(capteur2);
 
 
-        regulateur = new Regulateur(capts, sems, algoDectectionPresenceFIFO);
-        assertEquals(true, algoDectectionPresenceFIFO.getSemDynFile().isEmpty());
+        regulateur = new Regulateur(capts, sems, algoDetectionPresenceFIFO);
+        assertEquals(true, algoDetectionPresenceFIFO.getSemDynFile().isEmpty());
 
         regulateur.regulation();
-        assertEquals(true, algoDectectionPresenceFIFO.getSemDynFile().isEmpty());
+        assertEquals(true, algoDetectionPresenceFIFO.getSemDynFile().isEmpty());
 
         ((CaptPresence)(capteur0)).setPresence(true);
         regulateur.regulation();
-        assertEquals(1, algoDectectionPresenceFIFO.getSemDynFile().size());
+        assertEquals(1, algoDetectionPresenceFIFO.getSemDynFile().size());
 
         ((CaptPresence)(capteur1)).setPresence(true);
         regulateur.regulation();
-        assertEquals(2, algoDectectionPresenceFIFO.getSemDynFile().size());
+        assertEquals(2, algoDetectionPresenceFIFO.getSemDynFile().size());
 
         ((CaptPresence)(capteur2)).setPresence(true);
         regulateur.regulation();
-        assertEquals(3, algoDectectionPresenceFIFO.getSemDynFile().size());
+        assertEquals(3, algoDetectionPresenceFIFO.getSemDynFile().size());
 
         ((CaptPresence)(capteur0)).setPresence(false);
         ((CaptPresence)(capteur1)).setPresence(false);
         ((CaptPresence)(capteur2)).setPresence(false);
-        int tempsSemaphoreCycleComplet = algoDectectionPresenceFIFO.getTEMPS_AUTORISATION()
-                + algoDectectionPresenceFIFO.getTEMPS_ATTENTION()
-                + algoDectectionPresenceFIFO.getTEMPS_INTERDICTION();
+        int tempsSemaphoreCycleComplet = algoDetectionPresenceFIFO.getTEMPS_AUTORISATION()
+                + algoDetectionPresenceFIFO.getTEMPS_ATTENTION()
+                + algoDetectionPresenceFIFO.getTEMPS_INTERDICTION();
         for(int i = 0; i < COMPTEUR_TEST*tempsSemaphoreCycleComplet; i++){
             if(afficherTest) print();
             regulateur.regulation();
         }
-        assertEquals(0, algoDectectionPresenceFIFO.getSemDynFile().size());
+        assertEquals(0, algoDetectionPresenceFIFO.getSemDynFile().size());
 
     }
 
 
     private void print(){
-        for(Pair<SemaphoreDynamique, Integer> pair : algoDectectionPresenceFIFO.getSemDynFile()){
+        for(Pair<SemaphoreDynamique, Integer> pair : algoDetectionPresenceFIFO.getSemDynFile()){
             System.out.print(pair.toString());
             System.out.print(" - ");
         }
