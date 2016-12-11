@@ -14,20 +14,12 @@ public class Segment extends Route
 		nomSegment = nom;
 	}
 
-	public String getNomSegment() {
-		return nomSegment;
-	}
-
-	public void setNomSegment(String nomSegment) {
-		this.nomSegment = nomSegment;
-	}
-
 	Vehicule voitureEnTete(EnumSens s)
 	{
 		return this.sesVehicules.get(s.ind).getFirst();	
 	}
 	
-	public EnumSens getSensEntrée(Route r) throws ErreurModeleException
+	public EnumSens getSensEntrée(Route r) throws ErreurModele
 	{
 		for(EnumSens sens : EnumSens.values())
 		{
@@ -36,7 +28,7 @@ public class Segment extends Route
 				return sens.sensInverse();
 			}
 		}
-		throw new ErreurModeleException(r.toString() +"n'est pas adjacente à" +this.toString());
+		throw new ErreurModele(r.toString() +"n'est pas adjacente à" +this.toString());
 	}
 
 	@Override
@@ -48,18 +40,29 @@ public class Segment extends Route
 	@Override
 	public void finRoute(Vehicule v) 
 	{
-		this.saSignalisation[v.getSens().ind].comportement();
+		if(this.saSignalisation[v.getSens().ind] != null)
+		{
+			this.saSignalisation[v.getSens().ind].comportement();
+		}
+	}
+	
+	public String getNomSegment()
+	{
+		return nomSegment;
+	}
+	
+	public String toString()
+	{
+		return "Segment"+ nomSegment + " ("+longueur+" ul)";
 	}
 
-	public Jonction[] getSesExtremites() {
-		return sesExtremites;
+	public void setSaSignalisation(Semaphore[] saSignalisation) 
+	{
+		this.saSignalisation=saSignalisation;
 	}
-
-	public Semaphore[] getSaSignalisation() {
+	
+	public Semaphore[] getSaSignalisation() 
+	{
 		return saSignalisation;
 	}
-
-    public void setSaSignalisation(Semaphore[] saSignalisation) {
-        this.saSignalisation = saSignalisation;
-    }
 }

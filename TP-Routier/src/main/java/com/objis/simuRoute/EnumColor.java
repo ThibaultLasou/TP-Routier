@@ -16,7 +16,8 @@ public enum EnumColor
 	}
 
 	@Override
-	public String toString() {
+	public String toString() 
+	{
 		return name;
 	}
 }

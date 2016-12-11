@@ -7,7 +7,7 @@ public class JonctionSimple extends Jonction
 {
 
 	@Override
-	public Segment segSuivant(Vehicule v) throws ErreurModeleException //throws WTFException
+	public Segment segSuivant(Vehicule v) throws ErreurModele //throws WTFException
 	{
 		for(Segment s : sesAcces)
 		{
@@ -17,7 +17,7 @@ public class JonctionSimple extends Jonction
 			}
 			else
 			{
-				throw new ErreurModeleException(this.toString() + ": Erreur segSuivant");
+				throw new ErreurModele(this.toString() + ": Erreur segSuivant");
 			}
 		}
 		return new Segment(1,"route N"); // a modifier

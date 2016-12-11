@@ -6,13 +6,16 @@ package com.objis.simuRoute;
  * @author tlasou
  *
  */
-public class ErreurModeleException extends Exception 
+public class ErreurModele extends Exception 
 {
-	String msg;
-	
-	public ErreurModeleException(String message) 
+	public ErreurModele() 
 	{
-		msg = message;
+		super();
+	}
+	
+	public ErreurModele(String message) 
+	{
+		super(message);
 	}
 
 }

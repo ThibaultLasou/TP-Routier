@@ -6,16 +6,16 @@ package com.objis.simuRoute;
  */
 public class Vehicule 
 {
-	static int nbVehicules = 0;
-	int id;
-	int longueur;
-	int vitesse_max;
-	Route saRoute;
-	Route etapeSuiv;
-	Route routePrec;
-	int position;
-	int vitesse_inst;
-	EnumSens sens;
+	private static int nbVehicules = 0;
+	private int id;
+	private int longueur;
+	private int vitesse_max;
+	private Route saRoute;
+	private Route etapeSuiv;
+	private Route routePrec;
+	private int position;
+	private int vitesse_inst;
+	private EnumSens sens;
 	
 	/**
 	 * Constructeur qui détermine aléatoirement la route précédente et suivante
@@ -24,10 +24,10 @@ public class Vehicule
 	 * @param routeDepart - la route sur laquelle le véhicule est postionné
 	 * @param pos - sa position sur la route
 	 * @param sensDepart - son sens sur la route
-	 * @throws ErreurModeleException 
+	 * @throws ErreurModele 
 	 */
 	public Vehicule(int longueur, int vitesse_max, Route routeDepart, int pos, 
-			EnumSens sensDepart) throws ErreurModeleException
+			EnumSens sensDepart) throws ErreurModele
 	{
 		this.id = Vehicule.nbVehicules;
 		this.longueur = longueur;
@@ -68,9 +68,9 @@ public class Vehicule
 	/**
 	 * Fait avancer la voiture du maximum qu'elle peut parcourir pendant 
 	 * l'unité de temps
-	 * @throws ErreurModeleException 
+	 * @throws ErreurModele 
 	 */
-	public void avancer() throws ErreurModeleException
+	public void avancer() throws ErreurModele
 	{
 		/* soit vitesse max définie par une sémaphore, soit max du vehicule*/
 		if(saRoute.estFin(getPosition(), getSens()))
@@ -91,7 +91,7 @@ public class Vehicule
 				continue;//pour ne pas prendre les autres en compte
 			}
 			/* sinon on regarde si la route est libre devant */
-			else if(saRoute.getVehicule(getPosition()+getSens().direction, getSens()) == null)
+			else if(saRoute.estLibre(sens, position+sens.direction))
 			{
 				position++;
 				i++;
@@ -200,5 +200,10 @@ public class Vehicule
 	public void setSens(EnumSens sens) 
 	{
 		this.sens = sens;
+	}
+	
+	public int getLongueur() 
+	{
+		return longueur;
 	}
 }

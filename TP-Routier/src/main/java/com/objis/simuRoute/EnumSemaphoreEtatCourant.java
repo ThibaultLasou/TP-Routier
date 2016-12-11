@@ -8,8 +8,8 @@ import static com.objis.simuRoute.EnumColor.VERT;
  * Represente les etats des semaphores ainsi que les couleurs representatives
  * @author Patrice Camousseigt
  */
-public enum EnumSemaphoreEtatCourant {
-
+public enum EnumSemaphoreEtatCourant 
+{
     INTERDICTION("INTERDICTION", ROUGE),
     ATTENTION("ATTENTION", ORANGE),
     AUTORISATION("AUTORISATION", VERT);
@@ -17,12 +17,14 @@ public enum EnumSemaphoreEtatCourant {
     private String name;
     private EnumColor enumColor;
 
-    EnumSemaphoreEtatCourant(String name, EnumColor enumColor) {
+    EnumSemaphoreEtatCourant(String name, EnumColor enumColor) 
+    {
         this.name = name;
         this.enumColor = enumColor;
     }
 
-    public String getName() {
+    public String getName() 
+    {
         return name;
     }
 

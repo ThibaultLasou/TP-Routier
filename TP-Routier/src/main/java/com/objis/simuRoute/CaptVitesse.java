@@ -24,7 +24,6 @@ public class CaptVitesse extends Capteur
 		}
 		else
 		{
-			//TODO
 			return -1;
 		}
 	}
