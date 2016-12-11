@@ -21,7 +21,7 @@ public class JonctionComplexe extends Jonction
             Random aleatoire = new Random();
             indice = aleatoire.nextInt(sesAcces.size() - 1);
         }
-        while (sesAcces.get(indice) == v.getSaRoute()); //On cherche un segment aléatoirement, mais différent du segment actuel sur lequel se trouve la voiture
+        while (sesAcces.get(indice) == v.getRoutePrec()); //On cherche un segment aléatoirement, mais différent du segment actuel sur lequel se trouve la voiture
 
         return sesAcces.get(indice);
     }
@@ -30,12 +30,12 @@ public class JonctionComplexe extends Jonction
 	public String toString() 
 	{
 		String retour="";
-		for(int i=0;i<sesAcces.size()-1;i++)
+		for(int i=0;i<sesAcces.size();i++)
 		{
 			retour = retour+sesAcces.get(i).getNomSegment()+", ";
 		}
-		retour = retour+sesAcces.get(sesAcces.size()-1).getNomSegment();
+		retour = retour.substring(0, retour.length()-2); // pour supprimer la dernière virgule de la chaine de caracteres.
 		
 		return "Jonction Complexe entre : "+retour;
-	};
+	}
 }

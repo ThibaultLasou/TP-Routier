@@ -16,6 +16,7 @@ public abstract class Route
 		sesVehicules.add(EnumSens.POSITIF.ind, new LinkedList<Vehicule>());
 	}
 
+	/* renvoie le véhicule à cette position dans ce sens */
 	public Vehicule getVehicule(int pos, EnumSens sens)
 	{
 		for(Vehicule v : sesVehicules.get(sens.ind))
@@ -25,13 +26,26 @@ public abstract class Route
 				return v;
 			}
 		}
+		Vehicule v = getVehiculeDevant(pos, sens);
+		if(v != null)
+		{
+			if(pos*sens.direction >= (v.getPosition()+v.getLongueur()-1*v.getSens().sensInverse().direction)*sens.direction && pos*sens.direction <= v.getPosition()*sens.direction)
+			{
+				return v;
+			}
+		}
 		return null;
 	}
 
+	/* renvoie le premier vehicule devant */
 	public Vehicule getVehiculeDevant(int pos, EnumSens sens)
 	{
+		if(sesVehicules.get(sens.ind).size() == 0)
+		{
+			return null;
+		}
 		Vehicule v = sesVehicules.get(sens.ind).getLast();
-		for(int i=sesVehicules.get(sens.ind).size();i>0;i--)
+		for(int i=sesVehicules.get(sens.ind).size()-1;i>0;i--)
 		{
 			if(v.getPosition()*sens.direction > pos*sens.direction)// pour gérer les deux sens
 			{
@@ -44,65 +58,9 @@ public abstract class Route
 		}
 		return null;
 	}
-
-	/* calcule si une voiture dépasse de cette route déborde sur r*/
-	public int debordement(Route r)
-	{
-		for(LinkedList<Vehicule> a : sesVehicules)
-		{
-			Vehicule v = a.getLast();
-			if(v.getRoutePrec() == r)
-			{
-				int finVoiture = v.getPosition()+(v.getLongueur()-1*v.getSens().direction);//trouve la position du dernier "bout" de la voiture
-				if(v.getSens() == EnumSens.POSITIF)
-				{
-					if(finVoiture < 0)
-					{
-						return 0-finVoiture;
-					}
-					else
-					{
-						return 0;
-					}
-				}
-				else
-				{
-					if(finVoiture >= longueur)
-					{
-						return finVoiture-longueur-1;
-					}
-					else
-					{
-						return 0;
-					}
-				}
-			}
-			else
-			{
-				continue;
-			}
-		}
-		return 0;
-	}
 	
 	/* indique si la position dans ce sens est libre */
-	public boolean estLibre(EnumSens sens, int pos)
-	{
-		//voir si une voiture devant arrive pas jusque ici
-		if(getVehicule(pos, sens) == null)
-		{
-			Vehicule v = getVehiculeDevant(pos, sens);
-			if(v != null) /* pas de voiture à pos */
-			{
-				if(v.getPosition() + (v.getLongueur()*sens.direction) != pos) /* pas de voiture sur ce segment débordant sur pos */
-				{
-					if(v.getEtapeSuivante().debordement(this)*v.getSens().sensInverse().direction + longueur * v.getSens().ind != pos)
-					return true;
-				}
-			}
-		}
-		return false;
-	}
+	public abstract boolean estLibre(EnumSens sens, int pos);
 	
 	/* indique si l'extrémité entrante dans ce sens est libre */
 	public boolean estLibre(EnumSens sens)
@@ -129,7 +87,7 @@ public abstract class Route
 	{
 		v.getSaRoute().sesVehicules.get(v.getSens().ind).pollFirst(); // enlève la voiture de sa route actuelle
 		this.sesVehicules.get(v.getSens().ind).addLast(v); // la met dans la nouvelle
-		v.setSaRoute(this); // idem mais du point de vue de route
+		v.setSaRoute(this);
 		if(v.getSens() == EnumSens.POSITIF) // règle la position
 		{
 			v.setPosition(0);
@@ -147,4 +105,57 @@ public abstract class Route
 	public abstract Route segSuivant(Vehicule v) throws ErreurModele;
 	
 	public abstract EnumSens getSensEntrée(Route r) throws ErreurModele;
+
+	public void addVehicule(Vehicule v)
+	{
+		int i = sesVehicules.get(v.getSens().ind).indexOf(getVehicule(v.getPosition(), v.getSens()));
+		if(i==-1)
+		{
+			i = sesVehicules.get(v.getSens().ind).indexOf(getVehiculeDevant(v.getPosition(), v.getSens()))+1;
+		}
+		sesVehicules.get(v.getSens().ind).add(i, v);
+	}
+	
+	/* calcule si une voiture dépasse de cette route déborde sur r*/
+	public int debordement(Route r)
+	{
+		for(LinkedList<Vehicule> a : sesVehicules)
+		{
+			if(a.size() != 0)
+			{
+				Vehicule v = a.getLast();
+				if(v.getRoutePrec() == r)
+				{
+					int finVoiture = v.getPosition()+(v.getLongueur()-1*v.getSens().direction);//trouve la position du dernier "bout" de la voiture
+					if(v.getSens() == EnumSens.POSITIF)
+					{
+						if(finVoiture < 0)
+						{
+							return 0-finVoiture;
+						}
+						else
+						{
+							return 0;
+						}
+					}
+					else
+					{
+						if(finVoiture >= longueur)
+						{
+							return finVoiture-longueur-1;
+						}
+						else
+						{
+							return 0;
+						}
+					}
+				}
+				else
+				{
+					continue;
+				}
+			}
+		}
+		return 0;
+	}
 }

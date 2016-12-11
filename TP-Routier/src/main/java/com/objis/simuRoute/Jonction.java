@@ -45,4 +45,32 @@ public abstract class Jonction extends Route
 	{
 			return r.getSensEntrée(this).sensInverse();
 	}
+
+	public boolean estLibre(EnumSens sens, int pos) 
+	{
+		
+		if(getVehicule(pos, sens) == null)
+		// pas de vehic à cet endroit
+		{
+			/*Vehicule v = getVehiculeDevant(pos, sens);
+			if(v != null && v.getPosition() + (v.getLongueur()*sens.direction) != pos)
+			{
+				int d = 0;
+				for(Segment s : sesAcces)
+				{
+					d = Math.max(d, s.debordement(this));
+				}
+				if(d*sens.sensInverse().direction + longueur * sens.ind != pos)
+					// pas de voiture d'une autre route arrivant ici
+					{
+						 
+						// pas de voiture sur ce segment débordant sur pos
+						{*/
+							return true;
+						}
+					/*}
+			}
+		}*/
+		return false;
+	}
 }

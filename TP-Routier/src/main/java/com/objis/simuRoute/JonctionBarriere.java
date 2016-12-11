@@ -15,4 +15,10 @@ public class JonctionBarriere extends Jonction
 		return "Barriere sur : "+sesAcces.get(0).getNomSegment();
 		
 	}
+	
+	@Override
+	public void finRoute(Vehicule v)
+	{
+		v.arreter();
+	}
 }

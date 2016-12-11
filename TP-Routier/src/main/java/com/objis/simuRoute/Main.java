@@ -1,6 +1,9 @@
 package com.objis.simuRoute;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import com.objis.simuRoute.AlgoRegulation.AlgoChacunSonTour;
 
 public class Main
 {
@@ -20,8 +23,10 @@ public class Main
     private static ArrayList<Jonction> jonctions; // list de jonctions
     
     private static void actionVehicules() throws ErreurModele{
-        for(Vehicule vehicule : vehicules){
-            vehicule.avancer();
+        for(Vehicule v :vehicules)
+        {
+        	v.avancer();
+        	System.out.println(v);
         }
     }
 
@@ -46,10 +51,10 @@ public class Main
         Segment segment1 = new Segment(LONGUEUR_SEGMENT_1,"route N2");
         Segment segment2 = new Segment(LONGUEUR_SEGMENT_2,"route N3");
         Segment segment3 = new Segment(LONGUEUR_SEGMENT_3,"route N4");
-        segments.add(0, segment0);
-        segments.add(1, segment1);
-        segments.add(2, segment2);
-        segments.add(3, segment3);
+        segments.add(segment0);
+        segments.add(segment1);
+        segments.add(segment2);
+        segments.add(segment3);
         System.out.println("Voici le réseau routier : ");
         for(int i =0;i<segments.size();i++)
         {
@@ -59,52 +64,47 @@ public class Main
         jonctions = new ArrayList<Jonction>();
         
         Jonction jonctionB1 = new JonctionBarriere();
-        jonctionB1.sesAcces.add(0,segment0);
-        jonctions.add(0,jonctionB1);
+        segment0.addExtremite(jonctionB1, EnumSens.NEGATIF);
+        jonctions.add(jonctionB1);
       // Affichage de la jonction
         System.out.println(jonctions.get(0).toString()); 
         
         Jonction jonctionB2 = new JonctionBarriere();
         jonctionB2.sesAcces.add(0,segment3);
-        jonctions.add(1,jonctionB2);
+        segment3.addExtremite(jonctionB2, EnumSens.NEGATIF);
+        jonctions.add(jonctionB2);
         // Affichage de la jonction
         System.out.println(jonctions.get(1).toString()); 
         
         Jonction jonctionS1 = new JonctionSimple();
-        jonctionS1.sesAcces.add(0,segment2);
-        jonctions.add(2,jonctionS1);
+        segment2.addExtremite(jonctionS1, EnumSens.POSITIF);
+        segment3.addExtremite(jonctionS1, EnumSens.POSITIF);
+        jonctions.add(jonctionS1);
         // Affichage de la jonction
         System.out.println(jonctions.get(2).toString()); 
         
         Jonction jonctionC1 = new JonctionComplexe();
         jonctionC1.sesAcces.add(0,segment0);
-        jonctionC1.sesAcces.add(1,segment1);
-        jonctionC1.sesAcces.add(2,segment2);
+        segment0.addExtremite(jonctionC1, EnumSens.POSITIF);
+        segment1.addExtremite(jonctionC1, EnumSens.POSITIF);
+        segment2.addExtremite(jonctionC1, EnumSens.NEGATIF);
         jonctions.add(3,jonctionC1);
         // Affichage de la jonction
         System.out.println(jonctions.get(3).toString()); 
         
-        Jonction jonctionC2 = new JonctionComplexe();
-        jonctionC2.sesAcces.add(0,segment2);
-        jonctionC2.sesAcces.add(1,segment3);
-        jonctions.add(4,jonctionC2);
-        // Affichage de la jonction
-        System.out.println(jonctions.get(4).toString()); 
-        
-        
         // initialisation des semaphores
         semaphores = new ArrayList<Semaphore>();
-        FeuBiCol biColore1 = new FeuBiCol(EnumSens.POSITIF,segment0 );
+        FeuBiCol biColore1 = new FeuBiCol(EnumSens.POSITIF,segment0);
         semaphores.add(0,biColore1);
         // Affichage de la semaphore
         System.out.println(semaphores.get(0).toString()); 
         
-        FeuBiCol biColore2 = new FeuBiCol(EnumSens.NEGATIF,segment1 );
+        FeuBiCol biColore2 = new FeuBiCol(EnumSens.NEGATIF,segment1);
         semaphores.add(1,biColore2);
         // Affichage de la semaphore
         System.out.println(semaphores.get(1).toString()); 
         
-        FeuBiCol biColore3 = new FeuBiCol(EnumSens.NEGATIF,segment2 );
+        FeuBiCol biColore3 = new FeuBiCol(EnumSens.NEGATIF,segment2);
         semaphores.add(2,biColore3);
         // Affichage de la semaphore
         System.out.println(semaphores.get(2).toString()); 
@@ -138,12 +138,31 @@ public class Main
 
         // initialisation des regulateurs
         regulateurs = new ArrayList<Regulateur>();
-
+        AlgoChacunSonTour algo = new AlgoChacunSonTour();
+        ArrayList<SemaphoreDynamique> r1Sema = new ArrayList<SemaphoreDynamique>();
+        r1Sema.add(triColor2);
+        r1Sema.add(triColor1);
+        Regulateur r1 = new Regulateur(null, r1Sema, algo);
+        regulateurs.add(r1);
         // initialisation des vehicules
         vehicules = new ArrayList<Vehicule>();
-        //Vehicule vehicule0 = new Vehicule()
-        // TODO : faire vehicule pour pouvoir faire l'initialisation
-
+        try 
+        {
+			Vehicule vehicule0 = new Vehicule(1, 2, segment0, 0, EnumSens.POSITIF);
+			Vehicule vehicule1 = new Vehicule(1, 2, segment0, LONGUEUR_SEGMENT_0-1, EnumSens.NEGATIF);
+	        Vehicule vehicule2 = new Vehicule(1, 2, segment2, 0, EnumSens.POSITIF);
+	        Vehicule vehicule3 = new Vehicule(2, 2, segment2, 3, EnumSens.POSITIF);
+	        
+	        vehicules.add(vehicule0);
+	        vehicules.add(vehicule1);
+	        vehicules.add(vehicule2);
+	        vehicules.add(vehicule3);
+	    } catch (ErreurModele e1) 
+		{
+			System.out.println("Réseau incohérent : " + e1.getMessage());
+        	return;
+		}
+        
 
         for(int compteur = 0; compteur < NB_TOUR; compteur++){
 
@@ -157,11 +176,16 @@ public class Main
             	return;
             }
             // mise a jour capteurs
-            //misAJourCapteurs();
+            misAJourCapteurs();
 
             // mise a jour semaphores
-            //reguleSemaphores();
-
+            reguleSemaphores();
+            try {
+				System.in.read();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
 
     	

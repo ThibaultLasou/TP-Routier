@@ -12,6 +12,7 @@ public class CaptVitesse extends Capteur
 
 	public CaptVitesse(Segment sonEmplacement, Regulateur sonRegulateur, int position, EnumSens sens) {
 		super(sonEmplacement, sonRegulateur, position, sens);
+		presence = new CaptPresence(sonEmplacement, null, position, sens);
 	}
 
 

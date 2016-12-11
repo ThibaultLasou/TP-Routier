@@ -1,5 +1,7 @@
 package com.objis.simuRoute;
 
+import java.util.LinkedList;
+
 public class Segment extends Route
 {
 	private Jonction[] sesExtremites;
@@ -46,6 +48,16 @@ public class Segment extends Route
 		}
 	}
 	
+	public void addExtremite(Jonction j, EnumSens sens)
+	{
+		if(sesExtremites[sens.ind] != null)
+		{
+			System.out.println("Attention : remplacement de jonction ("+nomSegment+", "+ sens);
+		}
+		sesExtremites[sens.ind] = j;
+		j.sesAcces.add(this);
+	}
+	
 	public String getNomSegment()
 	{
 		return nomSegment;
@@ -53,7 +65,7 @@ public class Segment extends Route
 	
 	public String toString()
 	{
-		return "Segment"+ nomSegment + " ("+longueur+" ul)";
+		return "Segment "+ nomSegment + " ("+longueur+" ul)";
 	}
 
 	public void setSaSignalisation(Semaphore[] saSignalisation) 
@@ -64,5 +76,69 @@ public class Segment extends Route
 	public Semaphore[] getSaSignalisation() 
 	{
 		return saSignalisation;
+	}
+
+	@Override
+	public boolean estLibre(EnumSens sens, int pos) 
+	{
+		
+		if(getVehicule(pos, sens) == null)
+		// pas de vehic à cet endroit
+		{/*
+			if(sesExtremites[sens.ind].debordement(this) == 0 || sesExtremites[sens.ind].debordement(this)*sens.sensInverse().direction + longueur * sens.ind != pos)
+			// pas de voiture d'une autre route arrivant ici
+			{
+				Vehicule v = getVehiculeDevant(pos, sens);
+				if(v == null || v.getPosition() + (v.getLongueur()*sens.direction) != pos) 
+				// pas de voiture sur ce segment débordant sur pos
+				{*/
+					return true;
+				}/*
+			}
+		}*/
+		return false;
+	}
+	
+	/* calcule si une voiture dépasse de cette route déborde sur r*/
+	public int debordement(Route r)
+	{
+		for(LinkedList<Vehicule> a : sesVehicules)
+		{
+			if(a.size() != 0)
+			{
+				Vehicule v = a.getLast();
+				if(v.getRoutePrec() == r)
+				{
+					int finVoiture = v.getPosition()+(v.getLongueur()-1*v.getSens().direction);//trouve la position du dernier "bout" de la voiture
+					if(v.getSens() == EnumSens.POSITIF)
+					{
+						if(finVoiture < 0)
+						{
+							return 0-finVoiture;
+						}
+						else
+						{
+							return 0;
+						}
+					}
+					else
+					{
+						if(finVoiture >= longueur)
+						{
+							return finVoiture-longueur-1;
+						}
+						else
+						{
+							return 0;
+						}
+					}
+				}
+				else
+				{
+					continue;
+				}
+			}
+		}
+		return 0;
 	}
 }

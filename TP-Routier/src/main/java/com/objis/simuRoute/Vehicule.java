@@ -39,6 +39,7 @@ public class Vehicule
 		this.etapeSuiv = saRoute.segSuivant(this);
 		this.position = pos;
 		Vehicule.nbVehicules++;
+		this.saRoute.addVehicule(this);
 	}
 	
 	/**
@@ -63,6 +64,7 @@ public class Vehicule
 		this.sens = sensDepart;
 		this.position = pos;
 		Vehicule.nbVehicules++;
+		this.saRoute.addVehicule(this);
 	}
 
 	/**
@@ -83,27 +85,34 @@ public class Vehicule
 		}
 		
 		int i;
-		for(i=1;i<vitesse_inst;)
+		for(i=0;i<vitesse_inst;)
 		{
 			if(saRoute.estFin(getPosition(), getSens()))
 			{
 				saRoute.finRoute(this);
-				continue;//pour ne pas prendre les autres en compte
+				if(this.estArrete())
+				{
+					continue;//pour ne pas prendre les autres en compte
+				}
+				else
+				{
+					/* si la route de devant est libre */
+					if(etapeSuiv.estLibre(getSens()))
+					{
+						etapeSuiv.entreeRoute(this);
+						i++;
+					}
+				}
 			}
 			/* sinon on regarde si la route est libre devant */
 			else if(saRoute.estLibre(sens, position+sens.direction))
 			{
-				position++;
+				position+=sens.direction;
 				i++;
 			}
-			/* ou si la route de devant est libre */
-			if(saRoute.estFin(getPosition(), getSens()))
+			else
 			{
-				if(etapeSuiv.estLibre(getSens()))
-				{
-					etapeSuiv.entreeRoute(this);
-					i++;
-				}
+				vitesse_inst = i;
 			}
 		}
 	}
@@ -205,5 +214,10 @@ public class Vehicule
 	public int getLongueur() 
 	{
 		return longueur;
+	}
+	
+	public String toString()
+	{
+		return "Vehicule " + id + " sur " + saRoute + " au point " + position + " dans le sens " + sens + " (" + vitesse_inst + " ul/ut)";
 	}
 }
