@@ -20,7 +20,6 @@ public class Stop extends Panneau
 	 * Arrete systematiquement le vehicule
      * Si la voiture avance, le stop arrete le vehicule
      * Si la voiture est arretee, le stop lui redonne sa vitesse maximale
-     * mais la voiture verifie si le segment suivant est disponible et avance que a cette condition
 	 */
 	@Override
 	void comportement() {

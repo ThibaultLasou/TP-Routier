@@ -17,11 +17,14 @@ public enum EnumSemaphoreEtatCourant
     private String name;
     private EnumColor enumColor;
 
+
     EnumSemaphoreEtatCourant(String name, EnumColor enumColor) 
     {
         this.name = name;
         this.enumColor = enumColor;
     }
+
+    /* Getter */
 
     public String getName() 
     {

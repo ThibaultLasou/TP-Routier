@@ -9,9 +9,9 @@ import java.util.ArrayList;
  */
 public class Regulateur 
 {
-	ArrayList<Pair<SemaphoreDynamique, Integer>> sesSemaphoreDynamique;
-	ArrayList<Capteur> sesCapteurs;
-	Algo sonAlgo;
+	protected ArrayList<Pair<SemaphoreDynamique, Integer>> sesSemaphoreDynamique;
+    protected ArrayList<Capteur> sesCapteurs;
+    protected Algo sonAlgo;
 
 	// compteur initial en unite de temps correspondant a l'attente pour un semaphore avant de changer d'etat
 	private static final int INITIALISATION_COMPTEUR = 0;
@@ -39,7 +39,8 @@ public class Regulateur
 
         for(SemaphoreDynamique semDyn : sesSemaphoreDynamique){
 
-            semDyn.reinitialisation(); // on reinitialise toutes les semaphores dynamiques
+            // on reinitialise toutes les semaphores dynamiques
+            semDyn.reinitialisation();
 
             Pair<SemaphoreDynamique, Integer> pair = new Pair<SemaphoreDynamique, Integer>(semDyn, INITIALISATION_COMPTEUR);
 
@@ -56,6 +57,7 @@ public class Regulateur
         sonAlgo.reguler(sesCapteurs, sesSemaphoreDynamique);
     }
 
+    /* Getter */
 
     public ArrayList<Capteur> getSesCapteurs() {
         return sesCapteurs;

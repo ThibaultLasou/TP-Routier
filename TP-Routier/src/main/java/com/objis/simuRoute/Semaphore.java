@@ -6,9 +6,9 @@ package com.objis.simuRoute;
  */
 public abstract class Semaphore 
 {
-	EnumSens sens;
-	Segment sonEmplacement;
-	EnumSemaphoreEtatCourant semaphoreEtatCourant;
+	protected EnumSens sens;
+	protected Segment sonEmplacement;
+	protected EnumSemaphoreEtatCourant semaphoreEtatCourant;
 
     /**
      * Constructeur
@@ -25,6 +25,8 @@ public abstract class Semaphore
      * Modifie le comportement du vehicule en tete en fionction de l'etat du semaphore
      */
 	abstract void comportement();
+
+	/* Getter */
 
 	public EnumSens getSens() {
 		return sens;

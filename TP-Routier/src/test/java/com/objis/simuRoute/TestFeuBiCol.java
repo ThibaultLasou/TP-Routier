@@ -8,12 +8,20 @@ import junit.framework.TestCase;
  */
 public class TestFeuBiCol extends TestCase {
 
+    /**
+     * Test du changement Interdiction->Autorisation
+     * @return le feu en etat d'autorisation
+     */
     private FeuBiCol testChangementRouge(){
         FeuBiCol feu = new FeuBiCol(EnumSens.POSITIF, new Segment(1,"route N"));
         feu.changement();
         return feu;
     }
 
+    /**
+     * Test du changement Autorisation->Interdiction
+     * @return le feu en etat d'autorisation
+     */
     private FeuBiCol testChangementVert(){
         FeuBiCol feu = new FeuBiCol(EnumSens.POSITIF, new Segment(1,"route N"));
         feu.changement();
@@ -21,6 +29,11 @@ public class TestFeuBiCol extends TestCase {
         return feu;
     }
 
+    /**
+     * Test du changement Interdiction->Autorisation
+     * Mais un ayant deja passe un cycle
+     * @return le feu en etat d'autorisation
+     */
     private FeuBiCol testChangementRouge2(){
         FeuBiCol feu = new FeuBiCol(EnumSens.POSITIF, new Segment(1,"route N"));
         feu.changement();
@@ -29,6 +42,9 @@ public class TestFeuBiCol extends TestCase {
         return feu;
     }
 
+    /**
+     * Test des changement()
+     */
     public void testChangement(){
         Feu feuVert = testChangementRouge();
         assertEquals(feuVert.semaphoreEtatCourant, EnumSemaphoreEtatCourant.AUTORISATION);
@@ -41,6 +57,9 @@ public class TestFeuBiCol extends TestCase {
         assertEquals(feuVert2.semaphoreEtatCourant.getEnumColor(), EnumColor.VERT);
     }
 
+    /**
+     * Test des reinitialisation()
+     */
     public void testReinitialisation(){
         Feu feu0 = new FeuTriCol(EnumSens.POSITIF, new Segment(1,"route N"));
         feu0.changement();

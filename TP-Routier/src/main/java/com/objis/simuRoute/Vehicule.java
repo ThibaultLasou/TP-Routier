@@ -206,4 +206,8 @@ public class Vehicule
 	{
 		return longueur;
 	}
+
+	public int getVitesse_max() {
+		return vitesse_max;
+	}
 }

@@ -147,4 +147,16 @@ public abstract class Route
 	public abstract Route segSuivant(Vehicule v) throws ErreurModele;
 	
 	public abstract EnumSens getSensEntrée(Route r) throws ErreurModele;
+
+	public ArrayList<LinkedList<Vehicule>> getSesVehicules() {
+		return sesVehicules;
+	}
+
+	public void setSesVehicules(ArrayList<LinkedList<Vehicule>> sesVehicules) {
+		this.sesVehicules = sesVehicules;
+	}
+
+	public void ajoutVehicule(Vehicule vehicule){
+	    this.sesVehicules.get(vehicule.getSens().getInd()).add(vehicule);
+    }
 }
