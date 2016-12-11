@@ -8,6 +8,7 @@ import javafx.util.Pair;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Le principe de cet algorithme est que chaque semaphore dynamiques est traite en fonction de son capteur associe.
@@ -57,7 +58,7 @@ public class AlgoDectectionPresenceFIFO implements Algo {
                 // si le semaphore est bien dans la liste des semaphores initialisee
                 // et si le semaphore n'est pas deja dans la file des semaphores a traiter
                 // alors il faut l'ajouter a la file a la suite des autres
-                if(contains(sems, semaphore) && !semDynFile.contains(semaphore)){
+                if(contains(sems, semaphore) && !contains(semDynFile, semaphore)){
                     semDynFile.add(new Pair<SemaphoreDynamique, Integer>((SemaphoreDynamique) semaphore, 0));
                 }
             }
@@ -86,18 +87,18 @@ public class AlgoDectectionPresenceFIFO implements Algo {
             // si le semaphore doit encore attendre pour changer d'etat
             semDynFile.set(INDEX_FILE_PEEK, new Pair<SemaphoreDynamique, Integer>(pair.getKey(),
                     pair.getValue() - UNITE_DE_TEMPS)); // on retire une unite de temps a son compteur
-
-            if(pair.getKey().etatCourantIsInterdiction() && pair.getValue() == 0){
-                // si le semaphore est en etat d'interdiction et
-                // si le semaphore dynamique a fait un cycle complet de ses etats, cad compteur = 0
-                // on le retire de la file
-                semDynFile.poll();
-            }
         }
         else{
             pair.getKey().changement(); // si le semaphores dynamiques a termine d'attendre pour cet etat
             semDynFile.set(INDEX_FILE_PEEK, new Pair<SemaphoreDynamique, Integer>(pair.getKey(),
                     tempsAttenteEtat(pair.getKey())));
+        }
+
+        // si le semaphore est en etat d'interdiction et
+        // si le semaphore dynamique a fait un cycle complet de ses etats, cad compteur = 0
+        // on le retire de la file
+        if(pair.getKey().etatCourantIsInterdiction() && pair.getValue() == 0){
+            semDynFile.poll();
         }
     }
 
@@ -107,7 +108,7 @@ public class AlgoDectectionPresenceFIFO implements Algo {
      * @param semaphore la semaphore dont la presence doit etre verifiee
      * @return si le semaphore est bien dans la liste des paires
      */
-    private static boolean contains(ArrayList<Pair<SemaphoreDynamique, Integer>> sems, Semaphore semaphore){
+    private static boolean contains(List<Pair<SemaphoreDynamique, Integer>> sems, Semaphore semaphore){
         for(Pair<SemaphoreDynamique, Integer> paire : sems){
             if(paire.getKey() == semaphore){
                 return true;

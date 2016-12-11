@@ -40,21 +40,22 @@ public class AlgoChacunSonTour implements Algo {
      * @param sems les semaphores dynamiques utilises
      */
     public void reguler(ArrayList<? extends Capteur> capts, ArrayList<Pair<SemaphoreDynamique, Integer>> sems) {
+
+        if(sems.get(indiceSemaphoreCourant).getKey().etatCourantIsInterdiction()
+                && sems.get(indiceSemaphoreCourant).getValue() == 0){
+            // si le semaphore est en etat d'interdiction et
+            // si le semaphore dynamique a fait un cycle complet de ses etats, cad compteur = 0
+
+            // si fin de liste on recommence au premier semaphore
+            indiceSemaphoreCourant = (indiceSemaphoreCourant + 1) % sems.size();
+        }
+
         Pair<SemaphoreDynamique, Integer> pair = sems.get(indiceSemaphoreCourant);
 
         if(pair.getValue() > 0){
             // si le semaphore doit encore attendre pour changer d'etat
             sems.set(indiceSemaphoreCourant, new Pair<SemaphoreDynamique, Integer>(pair.getKey(),
                     pair.getValue() - UNITE_DE_TEMPS)); // on retire une unite de temps a son compteur
-
-            if(sems.get(indiceSemaphoreCourant).getKey().etatCourantIsInterdiction()
-                    && sems.get(indiceSemaphoreCourant).getValue() == 0){
-                // si le semaphore est en etat d'interdiction et
-                // si le semaphore dynamique a fait un cycle complet de ses etats, cad compteur = 0
-
-                // si fin de liste on recommence au premier semaphore
-                indiceSemaphoreCourant = (indiceSemaphoreCourant + 1) % sems.size();
-            }
         }
         else{
             pair.getKey().changement(); // si le semaphores dynamiques a termine d'attendre pour cet etat

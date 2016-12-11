@@ -1,6 +1,7 @@
 package com.objis.simuRoute;
 
 import com.objis.simuRoute.AlgoRegulation.AlgoDectectionPresenceFIFO;
+import javafx.util.Pair;
 import junit.framework.TestCase;
 
 import java.util.ArrayList;
@@ -11,20 +12,20 @@ import java.util.ArrayList;
 public class TestAlgoDetectionPresenceFIFO extends TestCase {
 
     private final static boolean afficherTest = false;
-    private final static int COMPTEUR_TEST = 50;
+    private final static int COMPTEUR_TEST = 4;
 
     private AlgoDectectionPresenceFIFO algoDectectionPresenceFIFO = new AlgoDectectionPresenceFIFO();
     private Regulateur regulateur;
 
     public void testAjoutFile(){
-        Segment segment0 = new Segment(1,"route N");
-        Segment segment1 = new Segment(1,"route N");
-        Segment segment2 = new Segment(1,"route N");
+        Segment segment0 = new Segment(1,"route A");
+        Segment segment1 = new Segment(1,"route B");
+        Segment segment2 = new Segment(1,"route C");
 
         ArrayList<SemaphoreDynamique> sems = new ArrayList<SemaphoreDynamique>();
-        SemaphoreDynamique semaphoreDynamique0 = new FeuBiCol(EnumSens.POSITIF, segment0);
+        SemaphoreDynamique semaphoreDynamique0 = new FeuTriCol(EnumSens.POSITIF, segment0);
         SemaphoreDynamique semaphoreDynamique1 = new FeuBiCol(EnumSens.POSITIF, segment1);
-        SemaphoreDynamique semaphoreDynamique2 = new FeuBiCol(EnumSens.POSITIF, segment2);
+        SemaphoreDynamique semaphoreDynamique2 = new FeuTriCol(EnumSens.POSITIF, segment2);
         sems.add(semaphoreDynamique0);
         sems.add(semaphoreDynamique1);
         sems.add(semaphoreDynamique2);
@@ -33,6 +34,14 @@ public class TestAlgoDetectionPresenceFIFO extends TestCase {
         saSignalisation0[EnumSens.POSITIF.getInd()] = semaphoreDynamique0;
         saSignalisation0[EnumSens.NEGATIF.getInd()] = null;
         segment0.setSaSignalisation(saSignalisation0);
+        Semaphore[] saSignalisation1 = new Semaphore[2];
+        saSignalisation1[EnumSens.POSITIF.getInd()] = semaphoreDynamique1;
+        saSignalisation1[EnumSens.NEGATIF.getInd()] = null;
+        segment1.setSaSignalisation(saSignalisation1);
+        Semaphore[] saSignalisation2 = new Semaphore[2];
+        saSignalisation2[EnumSens.POSITIF.getInd()] = semaphoreDynamique2;
+        saSignalisation2[EnumSens.NEGATIF.getInd()] = null;
+        segment2.setSaSignalisation(saSignalisation2);
 
         ArrayList<Capteur> capts = new ArrayList<Capteur>();
         Capteur capteur0 = new CaptPresence(segment0, regulateur, 0, EnumSens.POSITIF);
@@ -67,8 +76,20 @@ public class TestAlgoDetectionPresenceFIFO extends TestCase {
         int tempsSemaphoreCycleComplet = algoDectectionPresenceFIFO.getTEMPS_AUTORISATION()
                 + algoDectectionPresenceFIFO.getTEMPS_ATTENTION()
                 + algoDectectionPresenceFIFO.getTEMPS_INTERDICTION();
-        for(int i = 0; i < 10*tempsSemaphoreCycleComplet; i++){}
-        //assertEquals(0, algoDectectionPresenceFIFO.getSemDynFile().size());
+        for(int i = 0; i < COMPTEUR_TEST*tempsSemaphoreCycleComplet; i++){
+            if(afficherTest) print();
+            regulateur.regulation();
+        }
+        assertEquals(0, algoDectectionPresenceFIFO.getSemDynFile().size());
 
+    }
+
+
+    private void print(){
+        for(Pair<SemaphoreDynamique, Integer> pair : algoDectectionPresenceFIFO.getSemDynFile()){
+            System.out.print(pair.toString());
+            System.out.print(" - ");
+        }
+        System.out.println();
     }
 }
