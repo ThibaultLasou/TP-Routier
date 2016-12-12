@@ -30,7 +30,7 @@ public class Segment extends Route
 				return sens.sensInverse();
 			}
 		}
-		throw new ErreurModele(r.toString() +"n'est pas adjacente à" +this.toString());
+		throw new ErreurModele(r.toString() +" n'est pas adjacente à " +this.toString());
 	}
 
 	@Override

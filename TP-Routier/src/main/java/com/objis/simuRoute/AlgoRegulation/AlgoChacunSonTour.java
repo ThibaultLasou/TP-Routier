@@ -24,12 +24,16 @@ public class AlgoChacunSonTour implements Algo {
     private final int TEMPS_ATTENTION = 1;
     private final int TEMPS_INTERDICTION = 0;
 
+    // la seule utilite de ces constantes est une meilleure lisibilite du code
     private static final int UNITE_DE_TEMPS = 1;
     private static final int REINITIALISATION = 0;
 
-    // l'indice actuelle du semaphore sur lequelle l'algo est concentre
+    // l'indice actuelle du semaphore sur lequel l'algo travaille
     private int indiceSemaphoreCourant;
 
+    /**
+     * Constructeur
+     */
     public AlgoChacunSonTour() {
         this.indiceSemaphoreCourant = 0;
     }
@@ -41,10 +45,10 @@ public class AlgoChacunSonTour implements Algo {
      */
     public void reguler(ArrayList<? extends Capteur> capts, ArrayList<Pair<SemaphoreDynamique, Integer>> sems) {
 
+        // si le semaphore est en etat d'interdiction
+        // et si le semaphore dynamique a fait un cycle complet de ses etats, cad compteur = 0
         if(sems.get(indiceSemaphoreCourant).getKey().etatCourantIsInterdiction()
                 && sems.get(indiceSemaphoreCourant).getValue() == 0){
-            // si le semaphore est en etat d'interdiction et
-            // si le semaphore dynamique a fait un cycle complet de ses etats, cad compteur = 0
 
             // si fin de liste on recommence au premier semaphore
             indiceSemaphoreCourant = (indiceSemaphoreCourant + 1) % sems.size();
@@ -52,13 +56,16 @@ public class AlgoChacunSonTour implements Algo {
 
         Pair<SemaphoreDynamique, Integer> pair = sems.get(indiceSemaphoreCourant);
 
+        // si le semaphore doit encore attendre pour changer d'etat
         if(pair.getValue() > 0){
-            // si le semaphore doit encore attendre pour changer d'etat
+
             sems.set(indiceSemaphoreCourant, new Pair<SemaphoreDynamique, Integer>(pair.getKey(),
                     pair.getValue() - UNITE_DE_TEMPS)); // on retire une unite de temps a son compteur
         }
         else{
-            pair.getKey().changement(); // si le semaphores dynamiques a termine d'attendre pour cet etat
+            // si le semaphore dynamique a termine d'attendre pour cet etat
+            pair.getKey().changement();
+            // on change l'etat du semaphore dynamique et lui attribue le compteur associe a son etat
             sems.set(indiceSemaphoreCourant, new Pair<SemaphoreDynamique, Integer>(pair.getKey(),
                     tempsAttenteEtat(pair.getKey())));
         }
@@ -82,15 +89,13 @@ public class AlgoChacunSonTour implements Algo {
         return REINITIALISATION;
     }
 
+    /* Getter */
+
     /**
      * Getter sur l'indice du semaphore courant
      * @return l'indice du semaphore courant
      */
     public int getIndiceSemaphoreCourant() {
         return indiceSemaphoreCourant;
-    }
-
-    public static int getREINITIALISATION() {
-        return REINITIALISATION;
     }
 }

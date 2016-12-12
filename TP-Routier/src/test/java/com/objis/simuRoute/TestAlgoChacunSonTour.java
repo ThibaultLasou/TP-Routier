@@ -113,6 +113,11 @@ public class TestAlgoChacunSonTour extends TestCase {
         System.out.println(" ");
     }
 
+    /**
+     * Affichage intermediaire des semaphores
+     * @param regulateur le regulateur
+     * @param i l'indice du semaphore
+     */
     private void affichageSemaphore(Regulateur regulateur, int i){
         System.out.print(regulateur.sesSemaphoreDynamique.get(i).getKey().semaphoreEtatCourant
                 + " : "

@@ -215,7 +215,7 @@ public class Vehicule
 	{
 		return longueur;
 	}
-	
+
 	public String toString()
 	{
 		return "Vehicule " + id + " sur " + saRoute + " au point " + position + " dans le sens " + sens + " (" + vitesse_inst + " ul/ut)";

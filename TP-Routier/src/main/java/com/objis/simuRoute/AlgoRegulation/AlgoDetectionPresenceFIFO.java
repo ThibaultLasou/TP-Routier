@@ -11,8 +11,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Le principe de cet algorithme est que chaque semaphore dynamiques est traite en fonction de son capteur associe.
- * Cad que lorsque le capteur detecte la presence d'un vehicule, le semaphore associe s'ajoute a la file
+ * Le principe de cet algorithme est que chaque semaphore dynamique est traite en fonction de son capteur associe.
+ * C-a-d que lorsque le capteur detecte la presence d'un vehicule, le semaphore associe s'ajoute a la file
  * A chaque tour on traite le premier element de la file et quand on a termine on le retire de la file
  * On part du principe que tous les capteurs de la liste ont une correspondance avec un semaphore de la liste des semaphores
  * De toute facon, on teste ici quand meme si c'est le cas
@@ -27,12 +27,13 @@ public class AlgoDetectionPresenceFIFO implements Algo {
     private final int TEMPS_ATTENTION = 1;
     private final int TEMPS_INTERDICTION = 0;
 
+    // la seule utilite de ces constantes est une meilleure lisibilite du code
     private static final int UNITE_DE_TEMPS = 1;
     private static final int REINITIALISATION = 0;
 
-    // l'indice utlise de la methode peek() de java
+    // l'indice utilise de la methode peek() de java
     private final int INDEX_FILE_PEEK = 0;
-    // une file pour l'ordre de traitement en fonction de la présence
+    // une file pour l'ordre de traitement des semaphores dynamiques en fonction de la présence
     private LinkedList<Pair<SemaphoreDynamique, Integer>> semDynFile;
 
     /**
@@ -44,7 +45,7 @@ public class AlgoDetectionPresenceFIFO implements Algo {
 
     /**
      * Ajoute les semaphores dynamiques a la file pour etre traite dans l'ordre
-     * Le premier capteur ayant detecte une presence permettra de traiter son semaphore en premier
+     * Le premier capteur ayant detecte une presence permettra de traiter son semaphore associe en premier
      * Dans le cas ou les capteurs detectent au meme tour une presence de vehicule,
      * le premier rencontre dans la liste aura la priorite
      * @param capts les capteurs captant la presence des vehicules
@@ -52,14 +53,17 @@ public class AlgoDetectionPresenceFIFO implements Algo {
      */
     public void addFile(ArrayList<? extends Capteur> capts, ArrayList<Pair<SemaphoreDynamique, Integer>> sems){
         for(Capteur capteur : capts){
+
             // si le capteur detecte la presence d'un vehicule
             if(capteur.isPresence()){
+
                 Semaphore semaphore = capteur.getSonEmplacement().getSaSignalisation()[capteur.getSens().getInd()];
+
                 // si le semaphore est bien dans la liste des semaphores initialisee
                 // et si le semaphore n'est pas deja dans la file des semaphores a traiter
                 // alors il faut l'ajouter a la file a la suite des autres
                 if(contains(sems, semaphore) && !contains(semDynFile, semaphore)){
-                    semDynFile.add(new Pair<SemaphoreDynamique, Integer>((SemaphoreDynamique) semaphore, 0));
+                    semDynFile.add(new Pair<SemaphoreDynamique, Integer>((SemaphoreDynamique) semaphore, REINITIALISATION));
                 }
             }
         }
@@ -67,7 +71,7 @@ public class AlgoDetectionPresenceFIFO implements Algo {
 
 
     /**
-     *
+     * Modifie l'etat des sempahores dynamiques en fonction des temps d'attente courant
      * @param capts les capteurs utilises
      * @param sems les semaphores dynamiques utilises
      */
@@ -83,13 +87,16 @@ public class AlgoDetectionPresenceFIFO implements Algo {
         // les vehicules aux semaphores statiques peuvent en profiter pour passer sans risque
         if(pair == null) return;
 
+        // si le semaphore doit encore attendre pour changer d'etat
         if(pair.getValue() > 0){
-            // si le semaphore doit encore attendre pour changer d'etat
+            // on retire une unite de temps a son compteur
             semDynFile.set(INDEX_FILE_PEEK, new Pair<SemaphoreDynamique, Integer>(pair.getKey(),
-                    pair.getValue() - UNITE_DE_TEMPS)); // on retire une unite de temps a son compteur
+                    pair.getValue() - UNITE_DE_TEMPS));
         }
         else{
-            pair.getKey().changement(); // si le semaphores dynamiques a termine d'attendre pour cet etat
+            // si le semaphores dynamiques a termine d'attendre pour cet etat
+            pair.getKey().changement();
+            // on change l'etat du semaphore dynamique et lui attribue le compteur associe a son etat
             semDynFile.set(INDEX_FILE_PEEK, new Pair<SemaphoreDynamique, Integer>(pair.getKey(),
                     tempsAttenteEtat(pair.getKey())));
         }
@@ -134,6 +141,8 @@ public class AlgoDetectionPresenceFIFO implements Algo {
         }
         return REINITIALISATION;
     }
+
+    /* Getter */
 
     public LinkedList<Pair<SemaphoreDynamique, Integer>> getSemDynFile() {
         return semDynFile;

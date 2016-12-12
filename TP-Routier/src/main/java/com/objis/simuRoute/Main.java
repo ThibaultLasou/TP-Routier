@@ -67,57 +67,51 @@ public class Main
         segment0.addExtremite(jonctionB1, EnumSens.NEGATIF);
         jonctions.add(jonctionB1);
       // Affichage de la jonction
-        System.out.println(jonctions.get(0).toString()); 
         
         Jonction jonctionB2 = new JonctionBarriere();
-        jonctionB2.sesAcces.add(0,segment3);
         segment3.addExtremite(jonctionB2, EnumSens.NEGATIF);
         jonctions.add(jonctionB2);
         // Affichage de la jonction
-        System.out.println(jonctions.get(1).toString()); 
+        
+        Jonction jonctionB3 = new JonctionBarriere();
+        segment1.addExtremite(jonctionB3, EnumSens.NEGATIF);
+        jonctions.add(jonctionB3);
+        // Affichage de la jonction
         
         Jonction jonctionS1 = new JonctionSimple();
         segment2.addExtremite(jonctionS1, EnumSens.POSITIF);
         segment3.addExtremite(jonctionS1, EnumSens.POSITIF);
         jonctions.add(jonctionS1);
         // Affichage de la jonction
-        System.out.println(jonctions.get(2).toString()); 
         
         Jonction jonctionC1 = new JonctionComplexe();
-        jonctionC1.sesAcces.add(0,segment0);
         segment0.addExtremite(jonctionC1, EnumSens.POSITIF);
         segment1.addExtremite(jonctionC1, EnumSens.POSITIF);
         segment2.addExtremite(jonctionC1, EnumSens.NEGATIF);
         jonctions.add(3,jonctionC1);
         // Affichage de la jonction
-        System.out.println(jonctions.get(3).toString()); 
         
         // initialisation des semaphores
         semaphores = new ArrayList<Semaphore>();
         FeuBiCol biColore1 = new FeuBiCol(EnumSens.POSITIF,segment0);
         semaphores.add(0,biColore1);
         // Affichage de la semaphore
-        System.out.println(semaphores.get(0).toString()); 
         
         FeuBiCol biColore2 = new FeuBiCol(EnumSens.NEGATIF,segment1);
         semaphores.add(1,biColore2);
         // Affichage de la semaphore
-        System.out.println(semaphores.get(1).toString()); 
-        
+
         FeuBiCol biColore3 = new FeuBiCol(EnumSens.NEGATIF,segment2);
         semaphores.add(2,biColore3);
         // Affichage de la semaphore
-        System.out.println(semaphores.get(2).toString()); 
         
         Feu triColor1 = new FeuTriCol(EnumSens.POSITIF, segment2);
         semaphores.add(3,triColor1);
         // Affichage de la semaphore
-        System.out.println(semaphores.get(3).toString()); 
         
         Feu triColor2 = new FeuTriCol(EnumSens.POSITIF, segment3);
         semaphores.add(4,triColor2);
         // Affichage de la semaphore
-        System.out.println(semaphores.get(4).toString()); 
         
         
         // initialisation des capteurs
