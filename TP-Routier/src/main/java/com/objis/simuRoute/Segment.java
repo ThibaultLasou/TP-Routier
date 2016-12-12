@@ -84,18 +84,18 @@ public class Segment extends Route
 		
 		if(getVehicule(pos, sens) == null)
 		// pas de vehic à cet endroit
-		{/*
+		{
 			if(sesExtremites[sens.ind].debordement(this) == 0 || sesExtremites[sens.ind].debordement(this)*sens.sensInverse().direction + longueur * sens.ind != pos)
 			// pas de voiture d'une autre route arrivant ici
 			{
 				Vehicule v = getVehiculeDevant(pos, sens);
 				if(v == null || v.getPosition() + (v.getLongueur()*sens.direction) != pos) 
 				// pas de voiture sur ce segment débordant sur pos
-				{*/
+				{
 					return true;
-				}/*
+				}
 			}
-		}*/
+		}
 		return false;
 	}
 	

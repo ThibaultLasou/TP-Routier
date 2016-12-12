@@ -55,6 +55,6 @@ public class FeuTriCol extends Feu
 
     @Override
     public String toString() {
-        return "Le feu TriColore sur la :"+ sonEmplacement.getNomSegment()+" (sens "+sens+") est " + this.semaphoreEtatCourant.getEnumColor().toString();
+        return "Le feu TriColore sur la : "+ sonEmplacement.getNomSegment()+" (sens "+sens+") est " + this.semaphoreEtatCourant.getEnumColor().toString();
     }
 }

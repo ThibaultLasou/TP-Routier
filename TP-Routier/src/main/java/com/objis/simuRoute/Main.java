@@ -158,8 +158,9 @@ public class Main
 		}
         
 
-        for(int compteur = 0; compteur < NB_TOUR; compteur++){
-
+        for(int compteur = 0; compteur < NB_TOUR; compteur++)
+        {
+        	System.out.println("Tour " + compteur);
             // mise a jour vehicules
             try{
             	actionVehicules();
@@ -174,10 +175,16 @@ public class Main
 
             // mise a jour semaphores
             reguleSemaphores();
-            try {
+            for(Semaphore s : semaphores)
+            {
+            	System.out.println(s);
+            }
+            System.out.println("(Pour passer au tour suivant, appuyer sur Entrée)");
+            try 
+            {
 				System.in.read();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
+			} catch (IOException e) 
+			{
 				e.printStackTrace();
 			}
         }

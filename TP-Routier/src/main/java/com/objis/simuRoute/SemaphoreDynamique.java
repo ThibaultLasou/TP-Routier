@@ -53,7 +53,4 @@ public abstract class SemaphoreDynamique extends Semaphore
     public boolean etatCourantIsAutorisation(){
         return this.semaphoreEtatCourant == EnumSemaphoreEtatCourant.AUTORISATION;
     }
-
-
-
 };

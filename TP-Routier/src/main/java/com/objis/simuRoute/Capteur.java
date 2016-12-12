@@ -41,6 +41,4 @@ public abstract class Capteur
     public EnumSens getSens() {
         return sens;
     }
-
-
 }
